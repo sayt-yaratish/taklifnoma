@@ -3161,6 +3161,95 @@ body{
 .location-chandelier{
    top:350px !important;
 }
+
+/* =========================================
+   УБИРАЕМ ВНУТРЕННИЙ СКРОЛЛ LOCATION
+========================================= */
+
+html,
+body{
+  width:100% !important;
+  height:auto !important;
+  min-height:100% !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+}
+
+/* Только общий скролл страницы */
+.scene{
+  position:relative !important;
+
+  width:100% !important;
+  height:auto !important;
+  min-height:100vh !important;
+
+  overflow:visible !important;
+}
+
+/* Основной контент */
+.site-behind{
+  position:relative !important;
+
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+
+  overflow:visible !important;
+}
+
+/* Блок локации */
+.location-block{
+  position:relative !important;
+
+  display:block !important;
+
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+
+  margin:0 !important;
+
+  overflow:visible !important;
+
+  transform:none !important;
+}
+
+/* Внутри локации вообще ничего не скроллится */
+.location-map,
+.real-map,
+.location-map iframe,
+.real-map iframe{
+  overflow:hidden !important;
+
+  height:auto;
+}
+
+/* Если используется iframe-карта */
+.real-map{
+  position:relative !important;
+
+  width:100% !important;
+  max-width:430px !important;
+
+  margin:0 auto !important;
+
+  overflow:hidden !important;
+}
+
+/* Убираем собственные скроллы у дочерних элементов */
+.location-block *{
+  scrollbar-width:none !important;
+}
+
+.location-block *::-webkit-scrollbar{
+  width:0 !important;
+  height:0 !important;
+  display:none !important;
+}
   
 </style>
 </head>
