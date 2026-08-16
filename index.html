@@ -3560,6 +3560,40 @@ setInterval(updateCountdown,1000);
 
 })();
 </script>
+<script>
+const music = document.getElementById('weddingMusic');
+const soundButton = document.getElementById('soundButton');
 
+if (music) {
+  music.volume = 1;
+
+  window.addEventListener('load', () => {
+    music.play().catch(() => {});
+  });
+}
+
+/* КНОПКА ЗВУКА */
+if (soundButton && music) {
+
+  soundButton.addEventListener('click', function (event) {
+
+    event.stopPropagation();
+
+    if (music.muted || music.paused) {
+
+      music.muted = false;
+
+      music.play().catch(() => {});
+
+    } else {
+
+      music.muted = true;
+
+    }
+
+  });
+
+}
+</script>
 </body>
 </html>
