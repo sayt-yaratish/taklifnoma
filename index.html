@@ -3489,6 +3489,25 @@ body::-webkit-scrollbar{
 
   pointer-events:none !important;
 }
+/* Убираем синий эффект Safari при нажатии на карту */
+.real-map,
+.real-map iframe{
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  outline: none !important;
+  border: 0 !important;
+}
+
+.real-map iframe:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Не даём Safari красить контейнер как ссылку */
+.real-map{
+  color:inherit !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 </style>
 </head>
 <body>
