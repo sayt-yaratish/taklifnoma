@@ -3520,6 +3520,166 @@ body::-webkit-scrollbar{
   text-decoration:none !important;
   -webkit-text-fill-color:#111 !important;
 }
+
+  /* =========================================================
+   FINAL iPHONE FIX — УБИРАЕМ СКРОЛЛ ВЛЕВО/ВПРАВО
+========================================================= */
+
+html{
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+
+  overflow-x:clip !important;
+  overflow-y:auto !important;
+}
+
+body{
+  position:relative !important;
+
+  width:100% !important;
+  max-width:100% !important;
+
+  min-width:0 !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  overflow-x:clip !important;
+  overflow-y:auto !important;
+
+  overscroll-behavior-x:none !important;
+}
+
+/* Главный контейнер */
+.scene{
+  position:relative !important;
+
+  width:100% !important;
+  max-width:100% !important;
+
+  min-width:0 !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  overflow-x:clip !important;
+  overflow-y:visible !important;
+}
+
+/* Все основные блоки */
+.site-behind,
+.event-block,
+.location-block,
+.gift-block{
+  width:100% !important;
+  max-width:100% !important;
+
+  min-width:0 !important;
+
+  overflow-x:clip !important;
+}
+
+/* =========================================================
+   КАРТОЧКА С КАРТОЙ
+========================================================= */
+
+.card-box{
+  width:100% !important;
+  max-width:385px !important;
+
+  min-width:0 !important;
+
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Текст внутри не должен растягивать страницу */
+.card-owner,
+.card-bank,
+.card-number,
+.gift-text,
+.gift-bottom-text{
+  max-width:100% !important;
+  overflow-wrap:break-word !important;
+  word-break:normal !important;
+}
+
+/* =========================================================
+   КАРТА
+========================================================= */
+
+.real-map{
+  width:100% !important;
+  max-width:430px !important;
+
+  min-width:0 !important;
+
+  margin-left:auto !important;
+  margin-right:auto !important;
+
+  overflow:hidden !important;
+}
+
+.real-map iframe{
+  width:100% !important;
+  max-width:100% !important;
+
+  left:0 !important;
+  right:0 !important;
+}
+
+/* =========================================================
+   ИЗОБРАЖЕНИЯ
+========================================================= */
+
+img{
+  max-width:100% !important;
+}
+
+/* =========================================================
+   ЛЮСТРЫ
+========================================================= */
+
+.event-chandelier,
+.location-chandelier{
+  max-width:none !important;
+
+  pointer-events:none !important;
+}
+
+/* =========================================================
+   ОБЛАКА
+========================================================= */
+
+.cloud-overlay{
+  position:fixed !important;
+
+  top:0 !important;
+  left:0 !important;
+
+  width:100% !important;
+  max-width:100% !important;
+
+  height:100vh !important;
+
+  overflow:hidden !important;
+
+  pointer-events:none !important;
+}
+
+/* =========================================================
+   ЗАПРЕЩАЕМ ЭЛЕМЕНТАМ РАСТЯГИВАТЬ СТРАНИЦУ
+========================================================= */
+
+*,
+*::before,
+*::after{
+  max-width:100%;
+}
+
+  
 </style>
 </head>
 <body>
