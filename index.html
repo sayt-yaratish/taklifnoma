@@ -4356,7 +4356,7 @@ img{
   }
 
   .photo-table{
-    height:490px;
+    height:620px;
   }
 
   .photo-card{
@@ -4438,7 +4438,7 @@ img{
   }
 
   .photo-table{
-    height:450px;
+    height:620px;
   }
 
   .photo-card{
@@ -4450,335 +4450,6 @@ img{
   }
 
 }
-  <script>
-
-document.addEventListener('DOMContentLoaded', function(){
-
-  /* =======================================================
-     ELEMENTS
-  ======================================================= */
-
-  const photoTable =
-    document.querySelector('.photo-table');
-
-  const cards =
-    document.querySelectorAll('.photo-card');
-
-  const lightbox =
-    document.getElementById('photoLightbox');
-
-  const lightboxImage =
-    document.getElementById('lightboxImage');
-
-  const lightboxClose =
-    document.getElementById('lightboxClose');
-
-  const lightboxPrev =
-    document.getElementById('lightboxPrev');
-
-  const lightboxNext =
-    document.getElementById('lightboxNext');
-
-  const lightboxCounter =
-    document.getElementById('lightboxCounter');
-
-
-  /* =======================================================
-     IMAGE ARRAY
-  ======================================================= */
-
-  const photos = [
-    'https://sayt-yaratish.github.io/taklifnoma/1.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/2.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/3.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/4.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/5.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/6.jpg'
-  ];
-
-
-  let currentIndex = 0;
-
-
-  /* =======================================================
-     APPEAR ON SCROLL
-  ======================================================= */
-
-  const galleryObserver =
-    new IntersectionObserver(
-      function(entries){
-
-        entries.forEach(function(entry){
-
-          if(
-            entry.isIntersecting
-          ){
-
-            photoTable.classList.add('is-visible');
-
-            galleryObserver.unobserve(
-              photoTable
-            );
-
-          }
-
-        });
-
-      },
-      {
-        threshold:.25
-      }
-    );
-
-  galleryObserver.observe(photoTable);
-
-
-  /* =======================================================
-     OPEN LIGHTBOX
-  ======================================================= */
-
-  function openLightbox(index){
-
-    currentIndex = index;
-
-    updateLightbox();
-
-    lightbox.classList.add('active');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'false'
-    );
-
-    document.body.style.overflow = 'hidden';
-
-  }
-
-
-  /* =======================================================
-     UPDATE IMAGE
-  ======================================================= */
-
-  function updateLightbox(){
-
-    lightboxImage.src =
-      photos[currentIndex];
-
-    lightboxCounter.textContent =
-      (currentIndex + 1) +
-      ' / ' +
-      photos.length;
-
-  }
-
-
-  /* =======================================================
-     CLOSE
-  ======================================================= */
-
-  function closeLightbox(){
-
-    lightbox.classList.remove('active');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'true'
-    );
-
-    document.body.style.overflow = '';
-
-  }
-
-
-  /* =======================================================
-     NEXT
-  ======================================================= */
-
-  function nextPhoto(){
-
-    currentIndex =
-      (currentIndex + 1) %
-      photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  /* =======================================================
-     PREVIOUS
-  ======================================================= */
-
-  function previousPhoto(){
-
-    currentIndex =
-      (currentIndex - 1 + photos.length) %
-      photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  /* =======================================================
-     CARD CLICK
-  ======================================================= */
-
-  cards.forEach(function(card){
-
-    card.addEventListener(
-      'click',
-      function(){
-
-        const index =
-          Number(
-            card.dataset.index
-          );
-
-        openLightbox(index);
-
-      }
-    );
-
-  });
-
-
-  /* =======================================================
-     BUTTONS
-  ======================================================= */
-
-  lightboxClose.addEventListener(
-    'click',
-    closeLightbox
-  );
-
-  lightboxNext.addEventListener(
-    'click',
-    nextPhoto
-  );
-
-  lightboxPrev.addEventListener(
-    'click',
-    previousPhoto
-  );
-
-
-  /* =======================================================
-     CLICK BACKGROUND TO CLOSE
-  ======================================================= */
-
-  lightbox.addEventListener(
-    'click',
-    function(event){
-
-      if(
-        event.target === lightbox
-      ){
-
-        closeLightbox();
-
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     KEYBOARD
-  ======================================================= */
-
-  document.addEventListener(
-    'keydown',
-    function(event){
-
-      if(
-        !lightbox.classList.contains('active')
-      ){
-
-        return;
-
-      }
-
-      if(event.key === 'Escape'){
-        closeLightbox();
-      }
-
-      if(event.key === 'ArrowRight'){
-        nextPhoto();
-      }
-
-      if(event.key === 'ArrowLeft'){
-        previousPhoto();
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     SWIPE ON MOBILE
-  ======================================================= */
-
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-
-  lightboxImageWrapTouchStart = null;
-
-
-  lightbox.addEventListener(
-    'touchstart',
-    function(event){
-
-      touchStartX =
-        event.changedTouches[0].screenX;
-
-    },
-    {
-      passive:true
-    }
-  );
-
-
-  lightbox.addEventListener(
-    'touchend',
-    function(event){
-
-      touchEndX =
-        event.changedTouches[0].screenX;
-
-      const distance =
-        touchEndX - touchStartX;
-
-
-      if(
-        Math.abs(distance) < 50
-      ){
-
-        return;
-
-      }
-
-
-      if(distance < 0){
-
-        nextPhoto();
-
-      }else{
-
-        previousPhoto();
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
-
-});
-
-</script>
   .photo-table {
     height: 620px;
   }
@@ -5285,6 +4956,335 @@ if (soundButton && music) {
 }
 </script>
   <script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  /* =======================================================
+     ELEMENTS
+  ======================================================= */
+
+  const photoTable =
+    document.querySelector('.photo-table');
+
+  const cards =
+    document.querySelectorAll('.photo-card');
+
+  const lightbox =
+    document.getElementById('photoLightbox');
+
+  const lightboxImage =
+    document.getElementById('lightboxImage');
+
+  const lightboxClose =
+    document.getElementById('lightboxClose');
+
+  const lightboxPrev =
+    document.getElementById('lightboxPrev');
+
+  const lightboxNext =
+    document.getElementById('lightboxNext');
+
+  const lightboxCounter =
+    document.getElementById('lightboxCounter');
+
+
+  /* =======================================================
+     IMAGE ARRAY
+  ======================================================= */
+
+  const photos = [
+    'https://sayt-yaratish.github.io/taklifnoma/1.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/2.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/3.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/4.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/5.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/6.jpg'
+  ];
+
+
+  let currentIndex = 0;
+
+
+  /* =======================================================
+     APPEAR ON SCROLL
+  ======================================================= */
+
+  const galleryObserver =
+    new IntersectionObserver(
+      function(entries){
+
+        entries.forEach(function(entry){
+
+          if(
+            entry.isIntersecting
+          ){
+
+            photoTable.classList.add('is-visible');
+
+            galleryObserver.unobserve(
+              photoTable
+            );
+
+          }
+
+        });
+
+      },
+      {
+        threshold:.25
+      }
+    );
+
+  galleryObserver.observe(photoTable);
+
+
+  /* =======================================================
+     OPEN LIGHTBOX
+  ======================================================= */
+
+  function openLightbox(index){
+
+    currentIndex = index;
+
+    updateLightbox();
+
+    lightbox.classList.add('active');
+
+    lightbox.setAttribute(
+      'aria-hidden',
+      'false'
+    );
+
+    document.body.style.overflow = 'hidden';
+
+  }
+
+
+  /* =======================================================
+     UPDATE IMAGE
+  ======================================================= */
+
+  function updateLightbox(){
+
+    lightboxImage.src =
+      photos[currentIndex];
+
+    lightboxCounter.textContent =
+      (currentIndex + 1) +
+      ' / ' +
+      photos.length;
+
+  }
+
+
+  /* =======================================================
+     CLOSE
+  ======================================================= */
+
+  function closeLightbox(){
+
+    lightbox.classList.remove('active');
+
+    lightbox.setAttribute(
+      'aria-hidden',
+      'true'
+    );
+
+    document.body.style.overflow = '';
+
+  }
+
+
+  /* =======================================================
+     NEXT
+  ======================================================= */
+
+  function nextPhoto(){
+
+    currentIndex =
+      (currentIndex + 1) %
+      photos.length;
+
+    updateLightbox();
+
+  }
+
+
+  /* =======================================================
+     PREVIOUS
+  ======================================================= */
+
+  function previousPhoto(){
+
+    currentIndex =
+      (currentIndex - 1 + photos.length) %
+      photos.length;
+
+    updateLightbox();
+
+  }
+
+
+  /* =======================================================
+     CARD CLICK
+  ======================================================= */
+
+  cards.forEach(function(card){
+
+    card.addEventListener(
+      'click',
+      function(){
+
+        const index =
+          Number(
+            card.dataset.index
+          );
+
+        openLightbox(index);
+
+      }
+    );
+
+  });
+
+
+  /* =======================================================
+     BUTTONS
+  ======================================================= */
+
+  lightboxClose.addEventListener(
+    'click',
+    closeLightbox
+  );
+
+  lightboxNext.addEventListener(
+    'click',
+    nextPhoto
+  );
+
+  lightboxPrev.addEventListener(
+    'click',
+    previousPhoto
+  );
+
+
+  /* =======================================================
+     CLICK BACKGROUND TO CLOSE
+  ======================================================= */
+
+  lightbox.addEventListener(
+    'click',
+    function(event){
+
+      if(
+        event.target === lightbox
+      ){
+
+        closeLightbox();
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     KEYBOARD
+  ======================================================= */
+
+  document.addEventListener(
+    'keydown',
+    function(event){
+
+      if(
+        !lightbox.classList.contains('active')
+      ){
+
+        return;
+
+      }
+
+      if(event.key === 'Escape'){
+        closeLightbox();
+      }
+
+      if(event.key === 'ArrowRight'){
+        nextPhoto();
+      }
+
+      if(event.key === 'ArrowLeft'){
+        previousPhoto();
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     SWIPE ON MOBILE
+  ======================================================= */
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+
+  lightboxImageWrapTouchStart = null;
+
+
+  lightbox.addEventListener(
+    'touchstart',
+    function(event){
+
+      touchStartX =
+        event.changedTouches[0].screenX;
+
+    },
+    {
+      passive:true
+    }
+  );
+
+
+  lightbox.addEventListener(
+    'touchend',
+    function(event){
+
+      touchEndX =
+        event.changedTouches[0].screenX;
+
+      const distance =
+        touchEndX - touchStartX;
+
+
+      if(
+        Math.abs(distance) < 50
+      ){
+
+        return;
+
+      }
+
+
+      if(distance < 0){
+
+        nextPhoto();
+
+      }else{
+
+        previousPhoto();
+
+      }
+
+    },
+    {
+      passive:true
+    }
+  );
+
+});
+
+</script>
+    <script>
 
 document.addEventListener('DOMContentLoaded', function(){
 
