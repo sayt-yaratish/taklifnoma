@@ -1764,6 +1764,93 @@ position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;persp
         font-size: 20px;
     }
 }
+
+  .site-behind{
+  opacity:1 !important;
+  transform:none !important;
+  filter:none !important;
+  animation:none !important;
+}
+
+  /* =========================================================
+   CLEAN CLOUD INTRO
+   Только фон + облака + SM
+========================================================= */
+
+/* Основа */
+.scene{
+  position:relative !important;
+  background:#f4ead6 !important;
+}
+
+/* Сам слой заставки — полностью прозрачный */
+.cloud-overlay{
+  position:fixed !important;
+
+  inset:0 !important;
+
+  width:100vw !important;
+  height:100vh !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  background:transparent !important;
+
+  overflow:hidden !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  z-index:9999 !important;
+
+  pointer-events:none !important;
+}
+
+/* Только настоящие облака */
+.cloud{
+  position:absolute !important;
+
+  border-radius:50% !important;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #ffffff 0%,
+      #f6e8cf 45%,
+      #e8c98f 75%,
+      rgba(232,201,143,0) 100%
+    ) !important;
+
+  filter:blur(18px) !important;
+
+  opacity:.95 !important;
+
+  display:block !important;
+}
+
+/* SM */
+.logo-wrap{
+  position:relative !important;
+
+  z-index:10000 !important;
+
+  background:transparent !important;
+
+  box-shadow:none !important;
+
+  border:0 !important;
+
+  opacity:0;
+  transform:scale(.75);
+
+  animation:
+    logoIn .7s ease-out 1.2s forwards,
+    logoOut .35s ease-in 2.45s forwards;
+
+  text-align:center;
+}
   
 </style>
 </head>
