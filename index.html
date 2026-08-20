@@ -37,16 +37,6 @@ html,body{
 width:100%;min-height:100%;margin:0;padding:0;overflow-x:hidden;overflow-y:auto;font-family:"Playfair Display", serif;background:#efe3cd;
 }
 
-/* ============ SITE BEHIND (reveal target) ============ */
-
-@keyframes revealSite{
-to{
-opacity:1;transform:scale(1);filter: blur(0);
-}
-}
-
-/* decorative double-line frame around the whole card */
-
 .frame-outer{
 position:absolute;inset:14px;border:1px solid rgba(182,137,47,0.55);border-radius:28px;pointer-events:none;
 }
@@ -54,8 +44,6 @@ position:absolute;inset:14px;border:1px solid rgba(182,137,47,0.55);border-radiu
 .frame-inner{
 position:absolute;inset:20px;border:1px solid rgba(182,137,47,0.35);border-radius:24px;pointer-events:none;
 }
-
-/* small ornamental swirl arcs tucked in the top corners */
 
 .corner-swirl{
 position:absolute;width:60px;height:60px;pointer-events:none;
@@ -74,7 +62,7 @@ top:22px;right:22px;transform:scaleX(-1);
 }
 
 .sound-icon{
-position:absolute;top:40px;right: 40px;width:40px;height:40px;border-radius:50%;background: radial-gradient(circle at 32% 28%, #f6d98a 0%, #d9a93f 55%, #b6892f 100%);box-shadow:0 4px 14px rgba(150,110,40,0.35);display:flex;align-items:center;justify-content:center;z-index:3;
+position:absolute;top:40px;right: 40px;width:40px;height:40px;border-radius:50%;background: radial-gradient(circle at 32% 28%, #f6d98a 0%, #d9a93f 55%, #b6892f 100%);box-shadow:0 4px 14px rgba(150,110,40,0.35);display:flex;align-items:center;justify-content:center;z-index:30;cursor:pointer;
 }
 
 .sound-icon svg{
@@ -89,69 +77,18 @@ font-family:"Great Vibes", cursive;font-size:38px;color:#3a2f22;margin-bottom:26
 width:92%;max-width:380px;margin-top:6px;
 }
 
-/* ============ CLOUD OVERLAY ============ */
-
-@keyframes overlayFade{
-to{
-opacity:0;visibility:hidden;
-}
-}
-
 .cloud{
 position:absolute;border-radius:50%;filter: blur(18px);opacity:0.95;background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f6e8cf 45%, #e8c98f 75%, rgba(232,201,143,0) 100%);
 }
 
-/* each cloud starts off-screen in its own direction and drifts to cover center */
-
-@keyframes moveTL{
-to{
-transform: translate(28vw,26vw);
-}
-}
-
-@keyframes moveTR{
-to{
-transform: translate(-26vw,28vw);
-}
-}
-
-@keyframes moveBL{
-to{
-transform: translate(26vw,-24vw);
-}
-}
-
-@keyframes moveBR{
-to{
-transform: translate(-24vw,-24vw);
-}
-}
-
-@keyframes moveT{
-to{
-transform: translateY(38vh);
-}
-}
-
-@keyframes moveB{
-to{
-transform: translateY(-38vh);
-}
-}
-
-@keyframes moveL{
-to{
-transform: translateX(38vw);
-}
-}
-
-@keyframes moveR{
-to{
-transform: translateX(-38vw);
-}
-}
-
-/* after covering fully, clouds gently drift back apart before the whole overlay fades (see overlayFade) */
+@keyframes moveTL{ to{ transform: translate(28vw,26vw); } }
+@keyframes moveTR{ to{ transform: translate(-26vw,28vw); } }
+@keyframes moveBL{ to{ transform: translate(26vw,-24vw); } }
+@keyframes moveBR{ to{ transform: translate(-24vw,-24vw); } }
+@keyframes moveT{ to{ transform: translateY(38vh); } }
+@keyframes moveB{ to{ transform: translateY(-38vh); } }
+@keyframes moveL{ to{ transform: translateX(38vw); } }
+@keyframes moveR{ to{ transform: translateX(-38vw); } }
 
 .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8{
 animation-fill-mode: forwards, forwards;
@@ -172,6 +109,7 @@ margin-left:-12px;padding-right:4px;
 
 .site-behind .az-mini{
 position:relative;display:inline-flex;align-items:baseline;width:max-content;overflow:visible;padding-right:6px;font-family:"Playfair Display", serif;font-style:italic;margin-bottom:2px;
+opacity:0;animation: heroFadeIn .45s ease-out 1.75s forwards;
 }
 
 .site-behind .az-mini .a-letter,
@@ -180,45 +118,25 @@ display:inline-block;font-size:46px;font-weight:700;background:linear-gradient(1
 }
 
 .logo-wrap{
-animation-delay: 1.2s;position:relative;z-index:6;opacity:0;transform:scale(.75);animation:
-    logoIn 0.7s ease-out 1.2s forwards,
-    logoOut 0.35s ease-in 2.45s forwards;text-align:center;
+position:relative;z-index:6;opacity:0;transform:scale(.75);animation:
+    logoIn 0.4s ease-out 0.7s forwards,
+    logoOut 0.3s ease-in 1.7s forwards;text-align:center;
 }
 
-@keyframes logoIn{
-from{
-opacity:0;transform:scale(.75);
-}
-
-to{
-opacity:1;transform:scale(1);
-}
-}
-
-@keyframes logoOut{
-from{
-opacity:1;transform:scale(1);
-}
-
-to{
-opacity:0;transform:scale(.92);visibility:hidden;
-}
-}
+@keyframes logoIn{ from{ opacity:0;transform:scale(.75); } to{ opacity:1;transform:scale(1); } }
+@keyframes logoOut{ from{ opacity:1;transform:scale(1); } to{ opacity:0;transform:scale(.92);visibility:hidden; } }
 
 .site-behind .az-mini .z-letter{
 margin-left:-6px;padding-right:4px;
 }
 
+@keyframes heroFadeIn{
+from{ opacity:0; transform:translateY(14px); }
+to{ opacity:1; transform:translateY(0); }
+}
+
 .wedding-photo{
 width:92%;max-width:380px;margin-top:10px;opacity:0;transform:translateY(20px);animation: weddingPhotoIn 1.5s ease-out forwards;animation-delay:4.2s;
-}
-
-
-
-@keyframes weddingInfoIn{
-to{
-opacity:1;transform:translateY(0);
-}
 }
 
 .gold-line{
@@ -250,80 +168,30 @@ width:140px;margin-bottom:28px;
 width:110px;margin-bottom:0;
 }
 
-
 .photo-final img{
 display:block;width:100%;height:auto;max-height:420px;object-fit:contain;
 }
 
 @keyframes weddingPhotoIn{
-from{
-opacity:0;transform:translateY(25px);
-}
-
-to{
-opacity:1;transform:translateY(0);
-}
+from{ opacity:0;transform:translateY(25px); }
+to{ opacity:1;transform:translateY(0); }
 }
 
 .couple{
 font-size:19px;letter-spacing:9px;margin-left:9px;margin-bottom:35px;font-family: "Great Vibes", cursive;
 }
 
-/* Дворец */
-
-/* Люстра слева */
-
-/* Контент */
-
-/* Время */
-
-/* Разделитель */
-
-/* Mehmonlar */
-
-/* Место */
-
-/* Адрес */
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-/* =========================================================
-   EVENT BLOCK
-========================================================= */
-
-/* =========================================================
-   PALACE
-========================================================= */
-
 .event-palace{
 position:relative;z-index:2;display:block;width:88%;max-width:420px;height:auto;margin:0 auto;object-fit:contain;
 }
-
-/* =========================================================
-   CHANDELIER
-========================================================= */
-
-/* =========================================================
-   CONTENT
-========================================================= */
 
 .event-content{
 position:relative;z-index:4;width:100%;max-width:500px;margin:35px auto 0;
 }
 
-/* =========================================================
-   TIME
-========================================================= */
-
 .event-time{
 font-family:"Playfair Display",serif;font-size:72px;line-height:.95;font-weight:400;letter-spacing:-3px;color:#17120e;margin-bottom:24px;
 }
-
-/* =========================================================
-   DIVIDER
-========================================================= */
 
 .event-divider{
 position:relative;width:125px;height:1px;margin:0 auto 23px;background:
@@ -342,45 +210,21 @@ content:"";position:absolute;width:10px;height:10px;left:50%;top:50%;transform:
     rotate(45deg);border:1px solid #b6892f;background:#faf3e6;
 }
 
-/* второй разделитель */
-
 .event-divider.small{
 width:110px;margin-top:26px;margin-bottom:25px;
 }
-
-/* =========================================================
-   TITLE
-========================================================= */
 
 .event-title{
 font-family:"Playfair Display",serif;font-size:21px;line-height:1.4;color:#242019;margin-bottom:4px;
 }
 
-/* =========================================================
-   PLACE
-========================================================= */
-
 .event-place{
 font-family:"Playfair Display",serif;font-size:20px;line-height:1.4;color:#242019;
 }
 
-/* =========================================================
-   ADDRESS
-========================================================= */
-
 .event-address{
 font-family:"Playfair Display",serif;font-size:17px;line-height:1.65;color:#342d24;max-width:400px;margin:0 auto;
 }
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-/* ОБЩАЯ РАМКА ВСЕЙ ОТКРЫТКИ */
 
 .scene::before{
 content:"";position:absolute;top:14px;left:14px;right:14px;bottom:14px;border:1px solid rgba(182,137,47,.55);border-radius:28px;pointer-events:none;z-index:100;
@@ -396,10 +240,6 @@ position:absolute;left:-28px;top:375px;width:190px;height:auto;z-index:3;opacity
   );
 }
 
-/* =========================================================
-   РАМКА
-========================================================= */
-
 .location-frame{
 position:absolute;top:10px;left:10px;right:10px;bottom:10px;border:1px solid rgba(182,137,47,.38);border-radius:22px;pointer-events:none;
 }
@@ -407,86 +247,6 @@ position:absolute;top:10px;left:10px;right:10px;bottom:10px;border:1px solid rgb
 .location-frame::after{
 content:"";position:absolute;top:6px;left:6px;right:6px;bottom:6px;border:1px solid rgba(182,137,47,.18);border-radius:18px;
 }
-
-/* =========================================================
-   КНОПКА
-========================================================= */
-
-/* =========================================================
-   ЗАГОЛОВОК
-========================================================= */
-
-/* =========================================================
-   ЛЮСТРА
-========================================================= */
-
-/* =========================================================
-   КАРТА
-========================================================= */
-
-/* =========================================================
-   ПОДПИСЬ НА КАРТЕ
-========================================================= */
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-/* =========================================================
-   LOCATION BLOCK
-========================================================= */
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-/* =========================================================
-   TITLE
-========================================================= */
-
-/* =========================================================
-   CHANDELIER
-========================================================= */
-
-/* =========================================================
-   MAP
-========================================================= */
-
-/* =========================================================
-   LABEL ON MAP
-========================================================= */
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-/* =========================================================
-   TITLE
-========================================================= */
-
-/* =========================================================
-   CHANDELIER
-========================================================= */
-
-/* =========================================================
-   MAP
-========================================================= */
-
-/* =========================================================
-   LABEL
-========================================================= */
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
 
 .event-block{
 position:relative;width:100%;min-height:760px;overflow:hidden;background:transparent;text-align:center;padding: 15px 18px 0px;
@@ -520,24 +280,10 @@ margin-top:7px;font-family:"Playfair Display",serif;font-size:12px;color:#6f604f
 margin-top:22px;font-family:"Playfair Display",serif;font-size:18px;letter-spacing:2px;color:#8f691f;
 }
 
-/* =========================================
-   ПОДПИСЬ
-========================================= */
-
-/* =========================================
-   КНОПКА В ЦЕНТРЕ КАРТЫ
-========================================= */
-
-/* =========================================
-   MOBILE
-========================================= */
-
 .location-label{
 position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);z-index:10;white-space:nowrap;padding:6px 13px;border:1px solid #c9a65e;border-radius:16px;background:#fffdf9;color:#4a3c2a;font-family:"Playfair Display",serif;font-size:11px;line-height:1;box-shadow:
     0 2px 8px rgba(150,110,40,.08);
 }
-
-/* КНОПКА ПОД МЕТКОЙ */
 
 .location-map svg{
 display:block;width:100%;height:auto;
@@ -546,18 +292,6 @@ display:block;width:100%;height:auto;
 .location-map{
 position:relative;z-index:4;width:100%;max-width:430px;margin:25px auto 0;
 }
-
-/* =========================================
-   TITLE
-========================================= */
-
-/* =========================================
-   REAL MAP
-========================================= */
-
-/* =========================================
-   BUTTON ON TOP OF MAP
-========================================= */
 
 .location-button{
 margin:0 auto;position:absolute;left:50%;top:78%;transform:
@@ -572,26 +306,12 @@ box-shadow:
     translateY(-2px);
 }
 
-/* =========================================
-   CHANDELIER
-========================================= */
-
-/* =========================================
-   MOBILE
-========================================= */
-
-/* =========================================
-   SMALL PHONES
-========================================= */
-
 .scene,
 .site-behind,
 .event-block,
 .location-block{
 width:100%;height:auto !important;min-height:0;overflow:visible !important;
 }
-
-/* карта не должна создавать свой скролл */
 
 html body{
 overflow-y:auto !important;
@@ -602,18 +322,9 @@ overflow-y:auto !important;
 overflow:visible !important;
 }
 
-/* =========================================================
-   СКРЫВАЕМ ВСЕ ПОЛОСЫ ПРОКРУТКИ,
-   НО САМА ПРОКРУТКА ОСТАЁТСЯ
-========================================================= */
-
-/* Основной контейнер */
-
 .scene::-webkit-scrollbar{
 width:0;height:0;
 }
-
-/* Внутренние блоки */
 
 .site-behind,
 .event-block,
@@ -629,176 +340,10 @@ scrollbar-width:none;-ms-overflow-style:none;
 width:0;height:0;display:none;
 }
 
-/* Яндекс iframe */
-
 .real-map::-webkit-scrollbar,
 .real-map iframe::-webkit-scrollbar{
 width:0;height:0;display:none;
 }
-
-.gift-block{
-position:relative;width:100%;padding:35px 18px 80px;text-align:center;background:transparent;color:#241d17;
-}
-
-/* =========================
-   TOP LINE
-========================= */
-
-.gift-top-line{
-width:110px;height:1px;margin:0 auto 25px;background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #b6892f,
-      transparent
-    );
-}
-
-/* =========================
-   TITLE
-========================= */
-
-.gift-title{
-margin:0 0 20px;font-family:"Playfair Display",serif;font-size:43px;font-weight:400;line-height:1;color:#17120e;
-}
-
-/* =========================
-   TEXT
-========================= */
-
-.gift-text{
-margin:0 auto 30px;font-family:"Playfair Display",serif;font-size:18px;line-height:1.45;color:#342d24;
-}
-
-/* =========================
-   CARD
-========================= */
-
-/* inner frame */
-
-.card-box::before{
-content:"";position:absolute;inset:10px;border:1px solid rgba(182,137,47,.20);border-radius:20px;pointer-events:none;
-}
-
-/* =========================
-   LABEL
-========================= */
-
-.card-label{
-position:relative;z-index:2;font-family:"Playfair Display",serif;font-size:11px;letter-spacing:3px;color:#655844;margin-bottom:8px;
-}
-
-/* =========================
-   OWNER
-========================= */
-
-.card-owner{
-position:relative;z-index:2;font-family:"Great Vibes",cursive;font-size:32px;line-height:1;color:#30271e;margin-bottom:24px;
-}
-
-/* =========================
-   BANK
-========================= */
-
-.bank-label{
-margin-bottom:7px;
-}
-
-.card-bank{
-position:relative;z-index:2;font-family:"Playfair Display",serif;font-size:22px;color:#29231d;
-}
-
-/* =========================
-   DIVIDER
-========================= */
-
-.card-divider{
-width:95px;height:1px;margin:22px auto 25px;background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #b6892f,
-      transparent
-    );
-}
-
-/* =========================
-   CARD NUMBER
-========================= */
-
-.card-number{
-position:relative;z-index:2;margin:14px auto 28px;font-family: Montsserrat;font-size:27px;font-weight:600;letter-spacing:3px;line-height:1.35;color:#111;
-}
-
-/* =========================
-   COPY BUTTON
-========================= */
-
-.copy-wrap{
-position:relative;z-index:5;display:flex;justify-content:center;width:100%;
-}
-
-.copy-button{
-position:relative;display:flex;align-items:center;justify-content:center;gap:12px;width:88%;max-width:310px;height:58px;border:1px solid #b89a4f;border-radius:30px;background:#fffdf9;color:#332a20;font-family:"Playfair Display",serif;font-size:19px;cursor:pointer;box-shadow:
-    0 4px 12px rgba(150,110,40,.08);transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-}
-
-.copy-button:hover{
-transform:translateY(-2px);box-shadow:
-    0 8px 18px rgba(150,110,40,.12);
-}
-
-.copy-button.copied{
-transform:scale(.98);
-}
-
-/* =========================
-   COPY ICON
-========================= */
-
-.copy-icon{
-font-size:20px;line-height:1;transform:rotate(180deg);
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.copy-toast{
-position:absolute;left:50%;bottom:67px;transform:
-    translateX(-50%)
-    translateY(8px);padding:9px 18px;border-radius:22px;background:#b6892f;color:#fff;font-family:"Playfair Display",serif;font-size:14px;opacity:0;visibility:hidden;white-space:nowrap;box-shadow:
-    0 6px 15px rgba(120,90,40,.18);transition:
-    opacity .25s ease,
-    transform .25s ease,
-    visibility .25s ease;
-}
-
-.copy-toast::after{
-content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;transform:
-    translateX(-50%)
-    rotate(45deg);background:#b6892f;
-}
-
-.copy-toast.show{
-opacity:1;visibility:visible;transform:
-    translateX(-50%)
-    translateY(0);
-}
-
-/* =========================
-   BOTTOM TEXT
-========================= */
-
-.gift-bottom-text{
-margin:24px auto 0;font-family:"Playfair Display",serif;font-size:15px;line-height:1.55;color:#6a5b48;
-}
-
-/* =========================
-   MOBILE
-========================= */
 
 .plane-btn{
 position:absolute;bottom:30px;right:30px;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:
@@ -810,48 +355,36 @@ width:19px;height:19px;fill:var(--gold);
 }
 
 .c1{
-width:60vw;height:60vw;top:-30vw;left:-20vw;animation:moveTL .65s ease-out forwards;
+width:60vw;height:60vw;top:-30vw;left:-20vw;animation:moveTL .5s ease-out forwards;
 }
 
 .c2{
-width:65vw;height:65vw;top:-35vw;right:-25vw;animation:moveTR .65s ease-out forwards;animation-delay:.03s;
+width:65vw;height:65vw;top:-35vw;right:-25vw;animation:moveTR .5s ease-out forwards;animation-delay:.03s;
 }
 
 .c3{
-width:60vw;height:60vw;bottom:-32vw;left:-22vw;animation:moveBL .65s ease-out forwards;animation-delay:.06s;
+width:60vw;height:60vw;bottom:-32vw;left:-22vw;animation:moveBL .5s ease-out forwards;animation-delay:.06s;
 }
 
 .c4{
-width:65vw;height:65vw;bottom:-30vw;right:-20vw;animation:moveBR .65s ease-out forwards;animation-delay:.02s;
+width:65vw;height:65vw;bottom:-30vw;right:-20vw;animation:moveBR .5s ease-out forwards;animation-delay:.02s;
 }
 
 .c5{
-width:55vw;height:55vw;top:-40vh;left:20vw;animation:moveT .6s ease-out forwards;animation-delay:.08s;
+width:55vw;height:55vw;top:-40vh;left:20vw;animation:moveT .45s ease-out forwards;animation-delay:.08s;
 }
 
 .c6{
-width:55vw;height:55vw;bottom:-40vh;left:15vw;animation:moveB .6s ease-out forwards;animation-delay:.09s;
+width:55vw;height:55vw;bottom:-40vh;left:15vw;animation:moveB .45s ease-out forwards;animation-delay:.09s;
 }
 
 .c7{
-width:50vw;height:50vw;top:10vh;left:-40vw;animation:moveL .6s ease-out forwards;animation-delay:.05s;
+width:50vw;height:50vw;top:10vh;left:-40vw;animation:moveL .45s ease-out forwards;animation-delay:.05s;
 }
 
 .c8{
-width:50vw;height:50vw;top:15vh;right:-40vw;animation:moveR .6s ease-out forwards;animation-delay:.07s;
+width:50vw;height:50vw;top:15vh;right:-40vw;animation:moveR .45s ease-out forwards;animation-delay:.07s;
 }
-
-/* =========================================
-   УБИРАЕМ ВНУТРЕННИЙ СКРОЛЛ LOCATION
-========================================= */
-
-/* Только общий скролл страницы */
-
-/* Основной контент */
-
-/* Блок локации */
-
-/* Внутри локации вообще ничего не скроллится */
 
 .location-map,
 .real-map,
@@ -860,10 +393,6 @@ width:50vw;height:50vw;top:15vh;right:-40vw;animation:moveR .6s ease-out forward
 overflow:hidden !important;height:auto;
 }
 
-/* Если используется iframe-карта */
-
-/* Убираем собственные скроллы у дочерних элементов */
-
 .location-block *{
 scrollbar-width:none !important;
 }
@@ -871,10 +400,6 @@ scrollbar-width:none !important;
 .location-block *::-webkit-scrollbar{
 width:0 !important;height:0 !important;display:none !important;
 }
-
-/* =========================================================
-   СКРОЛЛ ТОЛЬКО У ВСЕЙ СТРАНИЦЫ
-========================================================= */
 
 html,
 body{
@@ -886,61 +411,24 @@ body::-webkit-scrollbar{
 display:none;width:0;height:0;
 }
 
-/* =========================================================
-   ОСНОВНАЯ СТРАНИЦА
-========================================================= */
-
-/* =========================================================
-   ОСНОВНОЙ КОНТЕНТ
-========================================================= */
-
 .site-behind{
-inset:0;display:flex;flex-direction:column;align-items:center;padding-top:8%;padding-bottom:60px;opacity:0;transform:scale(1.06);filter:blur(4px);animation:revealSite 1.8s ease-out forwards;animation-delay:3s;position:relative !important;width:100% !important;height:auto !important;min-height:0 !important;overflow:visible !important;
+position:relative !important;
+display:flex;flex-direction:column;align-items:center;text-align:center;
+width:100% !important;height:auto !important;min-height:0 !important;overflow:visible !important;
+padding-top:8%;padding-bottom:60px;
 }
-
-/* =========================================================
-   LOCATION BLOCK
-========================================================= */
-
-/* =========================================================
-   TITLE
-========================================================= */
 
 .location-title{
 margin-top: 20px;margin-bottom:40px;font-family:"Great Vibes",cursive;font-size:48px;line-height:.82;color:#a87516;position:relative !important;z-index:20 !important;display:block !important;margin:20px 0 30px !important;
 }
 
-/* =========================================================
-   REAL MAP
-========================================================= */
-
-/* =========================================================
-   IFRAME MAP
-========================================================= */
-
-/* =========================================================
-   LOCATION BUTTON
-========================================================= */
-
 .real-map .location-button{
 position:absolute !important;left:50% !important;top:72% !important;transform:translate(-50%,-50%) !important;z-index:50 !important;display:flex !important;align-items:center !important;justify-content:center !important;width:190px !important;height:50px !important;
 }
 
-/* =========================================================
-   КАРТА НЕ ИМЕЕТ СВОЕГО СКРОЛЛА
-========================================================= */
-
 .real-map::-webkit-scrollbar{
 display:none;
 }
-
-/* =========================================
-   ПРАВАЯ ЛЮСТРА — НЕ ОБРЕЗАТЬ
-========================================= */
-
-/* Люстра */
-
-/* Убираем синий эффект Safari при нажатии на карту */
 
 .real-map,
 .real-map iframe{
@@ -950,8 +438,6 @@ scrollbar-width:none;-ms-overflow-style:none;-webkit-tap-highlight-color: transp
 .real-map iframe:focus{
 outline: none !important;box-shadow: none !important;
 }
-
-/* Не даём Safari красить контейнер как ссылку */
 
 .location-block{
 min-height:0 !important;transform:none !important;display:block !important;width:100% !important;height:auto !important;margin:0 !important;overflow:hidden !important;background:transparent !important;padding:25px 10px 10px !important;text-align:center;position:relative !important;overflow-x:clip !important;overflow-y:visible !important;padding-bottom: 0px !important;
@@ -968,10 +454,6 @@ filter:
 color:#111 !important;text-decoration:none !important;-webkit-text-fill-color:#111 !important;
 }
 
-/* =========================================================
-   FINAL iPHONE FIX — УБИРАЕМ СКРОЛЛ ВЛЕВО/ВПРАВО
-========================================================= */
-
 html{
 width:100% !important;max-width:100% !important;margin:0 !important;padding:0 !important;overflow-x:clip !important;overflow-y:auto !important;
 }
@@ -979,8 +461,6 @@ width:100% !important;max-width:100% !important;margin:0 !important;padding:0 !i
 body{
 position:relative !important;width:100% !important;max-width:100% !important;min-width:0 !important;margin:0 !important;padding:0 !important;overflow-x:clip !important;overflow-y:auto !important;overscroll-behavior-x:none !important;
 }
-
-/* Главный контейнер */
 
 .scene{
 background:linear-gradient(
@@ -990,18 +470,12 @@ background:linear-gradient(
   );scrollbar-width:none;height:auto !important;min-height:100vh !important;overflow:visible !important;position:relative !important;width:100% !important;max-width:100% !important;min-width:0 !important;margin:0 !important;padding:0 !important;overflow-x:clip !important;overflow-y:visible !important;
 }
 
-/* Все основные блоки */
-
 .site-behind,
 .event-block,
 .location-block,
 .gift-block{
 width:100% !important;max-width:100% !important;min-width:0 !important;overflow-x:clip !important;
 }
-
-/* =========================================================
-   КАРТОЧКА С КАРТОЙ
-========================================================= */
 
 .card-box{
 position:relative;margin:0 auto;padding:30px 22px 28px;border:1px solid rgba(182,137,47,.38);border-radius:26px;background:
@@ -1013,8 +487,6 @@ position:relative;margin:0 auto;padding:30px 22px 28px;border:1px solid rgba(182
     0 8px 25px rgba(120,90,40,.08);width:100% !important;max-width:385px !important;min-width:0 !important;margin-left:auto !important;margin-right:auto !important;
 }
 
-/* Текст внутри не должен растягивать страницу */
-
 .card-owner,
 .card-bank,
 .card-number,
@@ -1022,10 +494,6 @@ position:relative;margin:0 auto;padding:30px 22px 28px;border:1px solid rgba(182
 .gift-bottom-text{
 max-width:100% !important;overflow-wrap:break-word !important;word-break:normal !important;
 }
-
-/* =========================================================
-   КАРТА
-========================================================= */
 
 .real-map{
 box-shadow:
@@ -1036,34 +504,28 @@ box-shadow:
 inset:0;position:absolute !important;top:0 !important;display:block !important;height:100% !important;min-height:420px !important;border:0 !important;overflow:hidden !important;width:100% !important;max-width:100% !important;left:0 !important;right:0 !important;
 }
 
-/* =========================================================
-   ИЗОБРАЖЕНИЯ
-========================================================= */
-
 img{
 max-width:100% !important;
 }
-
-/* =========================================================
-   ЛЮСТРЫ
-========================================================= */
 
 .event-chandelier,
 .location-chandelier{
 max-width:none !important;pointer-events:none !important;
 }
 
-/* =========================================================
-   ОБЛАКА
-========================================================= */
-
 .cloud-overlay{
-inset:0;z-index:5;display:flex;align-items:center;justify-content:center;animation:overlayFade .9s ease-in forwards;animation-delay:2.3s;position:fixed !important;top:0 !important;left:0 !important;width:100% !important;max-width:100% !important;height:100vh !important;overflow:hidden !important;pointer-events:none !important;
+position:fixed !important;
+inset:0 !important;
+width:100vw !important;height:100vh !important;
+margin:0 !important;padding:0 !important;
+background:transparent !important;
+overflow:hidden !important;
+display:flex !important;align-items:center !important;justify-content:center !important;
+z-index:9999 !important;
+pointer-events:none !important;
+animation:overlayFade .55s ease-in forwards;
+animation-delay:1.8s;
 }
-
-/* =========================================================
-   ЗАПРЕЩАЕМ ЭЛЕМЕНТАМ РАСТЯГИВАТЬ СТРАНИЦУ
-========================================================= */
 
 *,
 *::before,
@@ -1071,108 +533,36 @@ inset:0;z-index:5;display:flex;align-items:center;justify-content:center;animati
 max-width:100%;
 }
 
+@keyframes overlayFade{ to{ opacity:0;visibility:hidden; } }
+
 .photo-stack{
 position:relative;width:100%;max-width:520px;height:620px;margin:0 auto;overflow:hidden;perspective:1000px;
 }
-
-/* =========================================
-   CARD
-========================================= */
-
-/* =========================================
-   ANIMATION
-========================================= */
-
-@keyframes photoCardIn{
-0%{
-opacity:0;transform:
-      translate(-50%,-50%)
-      scale(.55)
-      rotate(0deg);
-}
-
-65%{
-opacity:1;transform:
-      translate(-50%,-50%)
-      scale(1.04)
-      rotate(var(--rotation));
-}
-
-100%{
-opacity:1;transform:
-      translate(
-        calc(-50% + var(--x)),
-        calc(-50% + var(--y))
-      )
-      scale(1)
-      rotate(var(--rotation));
-}
-}
-
-/* =========================================
-   POSITIONS
-========================================= */
-
-/* =========================================
-   MOBILE
-========================================= */
-
-/* =========================================================
-   GALLERY SECTION
-========================================================= */
-
-.photo-gallery-section{
-position:relative;width:100%;max-width:100%;min-height:650px;padding:
-    55px
-    10px
-    90px;overflow:hidden;text-align:center;background:transparent;
-}
-
-/* =========================================================
-   TITLE
-========================================================= */
 
 .gallery-title{
 position:relative;z-index:5;margin-bottom:30px;font-family:"Great Vibes",cursive;font-size:46px;line-height:1;color:#a87516;
 }
 
-/* =========================================================
-   TABLE / STAGE
-========================================================= */
-
-/* =========================================================
-   PHOTO CARD
-========================================================= */
+.photo-table{
+position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;perspective:1200px;height: 620px;
+}
 
 .photo-card{
-left:50%;top:50%;animation:
-    photoCardIn
-    .9s
-    cubic-bezier(.18,.89,.32,1.28)
-    forwards;position:absolute;display:block;width:180px;padding:8px;border:0;background:#fffdf8;border-radius:3px;box-shadow:
+position:absolute;left:50%;top:50%;width:180px;padding:8px;border:0;border-radius:3px;background:#fffdf8;box-shadow:
     0 12px 28px rgba(65,45,20,.18);cursor:pointer;opacity:0;transform:
     translate(-50%,-50%)
-    scale(.55)
-    rotate(0deg);transform-origin:center center;transition:
-    box-shadow .3s ease;appearance:none;-webkit-appearance:none;touch-action:manipulation;
+    scale(.45)
+    rotate(0deg);animation:none;appearance:none;-webkit-appearance:none;touch-action:manipulation;transition:box-shadow .3s ease;
 }
-
-.photo-card img{
-aspect-ratio:3 / 4;border-radius:2px;display:block;width:100%;height:225px;object-fit:cover;pointer-events:none;
-}
-
-/* =========================================================
-   HOVER
-========================================================= */
 
 .photo-card:hover{
 box-shadow:
     0 18px 40px rgba(65,45,20,.26);
 }
 
-/* =========================================================
-   ANIMATION
-========================================================= */
+.photo-card img{
+display:block;width:100%;height:225px;object-fit:cover;pointer-events:none;aspect-ratio:3 / 4;border-radius:2px;
+}
 
 .photo-table.is-visible .photo-card{
 animation:
@@ -1183,62 +573,17 @@ animation:
 }
 
 @keyframes photoScatter{
-0%{
-opacity:0;transform:
-      translate(-50%,-50%)
-      scale(.45)
-      rotate(0deg);
+0%{ opacity:0;transform: translate(-50%,-50%) scale(.45) rotate(0deg); }
+55%{ opacity:1;transform: translate(-50%,-50%) scale(1.06) rotate(var(--r)); }
+100%{ opacity:1;transform: translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1) rotate(var(--r)); }
 }
 
-55%{
-opacity:1;transform:
-      translate(-50%,-50%)
-      scale(1.06)
-      rotate(var(--r));
-}
-
-100%{
-opacity:1;transform:
-      translate(
-        calc(-50% + var(--x)),
-        calc(-50% + var(--y))
-      )
-      scale(1)
-      rotate(var(--r));
-}
-}
-
-/* =========================================================
-   CARD POSITIONS
-========================================================= */
-
-.card-1{
---rotation:-11deg;left:50%;top:50%;--x:-125px;--y:-165px;--r:-11deg;animation-delay:.05s;
-}
-
-.card-2{
---rotation:9deg;left:50%;top:50%;--x:120px;--y:-155px;--r:9deg;animation-delay:.35s;
-}
-
-.card-3{
---rotation:-3deg;left:50%;top:50%;--x:0px;--y:-35px;--r:-3deg;z-index:6;animation-delay:.65s;
-}
-
-.card-4{
---rotation:8deg;left:50%;top:50%;--x:-135px;--y:85px;--r:7deg;animation-delay:.95s;
-}
-
-.card-5{
---rotation:-9deg;left:50%;top:50%;--x:130px;--y:90px;--r:-8deg;animation-delay:1.25s;
-}
-
-.card-6{
---rotation:4deg;left:50%;top:50%;--x:0px;--y:205px;--r:4deg;z-index:7;animation-delay:1.55s;
-}
-
-/* =========================================================
-   LIGHTBOX
-========================================================= */
+.card-1{ --rotation:-11deg;left:50%;top:50%;--x:-125px;--y:-165px;--r:-11deg;animation-delay:.05s; }
+.card-2{ --rotation:9deg;left:50%;top:50%;--x:120px;--y:-155px;--r:9deg;animation-delay:.2s; }
+.card-3{ --rotation:-3deg;left:50%;top:50%;--x:0px;--y:-35px;--r:-3deg;z-index:6;animation-delay:.35s; }
+.card-4{ --rotation:8deg;left:50%;top:50%;--x:-135px;--y:85px;--r:7deg;animation-delay:.5s; }
+.card-5{ --rotation:-9deg;left:50%;top:50%;--x:130px;--y:90px;--r:-8deg;animation-delay:.65s; }
+.card-6{ --rotation:4deg;left:50%;top:50%;--x:0px;--y:205px;--r:4deg;z-index:7;animation-delay:.8s; }
 
 .photo-lightbox{
 position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:25px;background:rgba(25,18,10,.90);opacity:0;visibility:hidden;pointer-events:none;transition:
@@ -1250,10 +595,6 @@ position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-con
 opacity:1;visibility:visible;pointer-events:auto;
 }
 
-/* =========================================================
-   BIG IMAGE
-========================================================= */
-
 .lightbox-image-wrap{
 position:relative;width:min(90vw,900px);height:min(86vh,900px);display:flex;align-items:center;justify-content:center;touch-action:none;
 }
@@ -1263,602 +604,124 @@ display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:c
     0 20px 60px rgba(0,0,0,.35);user-select:none;-webkit-user-drag:none;
 }
 
-/* =========================================================
-   CLOSE
-========================================================= */
-
 .lightbox-close{
 position:absolute;top:18px;right:20px;width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:36px;line-height:1;cursor:pointer;z-index:5;
 }
-
-/* =========================================================
-   PREV / NEXT
-========================================================= */
 
 .lightbox-prev,
 .lightbox-next{
 position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:42px;line-height:1;cursor:pointer;z-index:5;
 }
 
-.lightbox-prev{
-left:18px;
-}
-
-.lightbox-next{
-right:18px;
-}
-
-/* =========================================================
-   COUNTER
-========================================================= */
+.lightbox-prev{ left:18px; }
+.lightbox-next{ right:18px; }
 
 .lightbox-counter{
 position:absolute;left:50%;bottom:20px;transform:translateX(-50%);color:rgba(255,255,255,.85);font-family:"Playfair Display",serif;font-size:14px;letter-spacing:2px;
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
 @media (max-width:600px){
-.event-divider{
-width:125px;margin-bottom:20px;
-}
-
-.event-divider.small{
-margin-top:25px;margin-bottom:24px;
-}
-
-.event-block{
-padding-top:18px;min-height:760px;padding:
-      10px
-      10px
-      70px;
-}
-
-.event-palace{
-margin-top:5px;width:92%;max-width:410px;
-}
-
-.event-chandelier{
-left:-68px;top:175px;width:150px;
-}
-
-.event-content{
-margin-top:32px;
-}
-
-.event-time{
-margin-bottom:20px;font-size:62px;letter-spacing:-2px;
-}
-
-.event-title{
-font-size:20px;
-}
-
-.event-place{
-font-size:19px;
-}
-
-.event-address{
-font-size:17px;line-height:1.6;padding:0 15px;
-}
-
-.location-label{
-font-size:10px;padding:5px 10px;
-}
-
-.location-map{
-width:100%;max-width:430px;margin-top:38px;
-}
-
-.location-block{
-min-height:600px;padding:
-      20px
-      8px
-      0px;
-}
-
-.location-title{
-margin-top:38px;font-size:48px;margin-bottom:40px;
-}
-
-.real-map{
-width:100%;height:400px;border-radius:22px;
-}
-
-.location-button{
-top:78%;width:190px;height:48px;font-size:16px;
-}
-
-.location-chandelier{
-right:-88px;top:105px;width:140px;
-}
-
-.gift-block{
-padding:
-      30px
-      14px
-      10px;
-}
-
-.gift-title{
-font-size:40px;
-}
-
-.gift-text{
-font-size:17px;
-}
-
-.card-box{
-max-width:370px;padding:
-      28px
-      18px
-      26px;
-}
-
-.card-owner{
-font-size:29px;
-}
-
-.card-number{
-font-size:24px;letter-spacing:2px;
-}
-
-.copy-button{
-width:92%;height:55px;font-size:18px;
-}
-
-.photo-stack{
-height:560px;
-}
-
-.photo-gallery-section{
-min-height:590px;padding:
-      45px
-      5px
-      70px;
-}
-
-.gallery-title{
-font-size:42px;
-}
-
-.photo-table{
-height:590px;
-}
-
-.photo-card{
-width:145px;padding:6px;
-}
-
-.photo-card img{
-height:185px;
-}
-
-.card-1{
---x:-88px;--y:-145px;
-}
-
-.card-2{
---x:86px;--y:-140px;
-}
-
-.card-3{
---x:0px;--y:-25px;
-}
-
-.card-4{
---x:-92px;--y:75px;
-}
-
-.card-5{
---x:90px;--y:78px;
-}
-
-.card-6{
---x:0px;--y:175px;
-}
-
-.photo-lightbox{
-padding:12px;
-}
-
-.lightbox-image-wrap{
-width:94vw;height:82vh;
-}
-
+.event-divider{ width:125px;margin-bottom:20px; }
+.event-divider.small{ margin-top:25px;margin-bottom:24px; }
+.event-block{ padding-top:18px;min-height:0;padding: 10px 10px 30px; }
+.event-palace{ margin-top:5px;width:92%;max-width:410px; }
+.event-chandelier{ left:-68px;top:175px;width:150px; }
+.event-content{ margin-top:32px; }
+.event-time{ margin-bottom:20px;font-size:62px;letter-spacing:-2px; }
+.event-title{ font-size:20px; }
+.event-place{ font-size:19px; }
+.event-address{ font-size:17px;line-height:1.6;padding:0 15px; }
+.location-label{ font-size:10px;padding:5px 10px; }
+.location-map{ width:100%;max-width:430px;margin-top:38px; }
+.location-block{ min-height:600px;padding: 20px 8px 0px; }
+.location-title{ margin-top:38px;font-size:48px;margin-bottom:40px; }
+.real-map{ width:100%;height:400px;border-radius:22px; }
+.location-button{ top:78%;width:190px;height:48px;font-size:16px; }
+.location-chandelier{ right:-88px;top:105px;width:140px; }
+.gift-block{ padding: 30px 14px 10px; }
+.gift-title{ font-size:40px; }
+.gift-text{ font-size:17px; }
+.card-box{ max-width:370px;padding: 28px 18px 26px; }
+.card-owner{ font-size:29px; }
+.card-number{ font-size:24px;letter-spacing:2px; }
+.copy-button{ width:92%;height:55px;font-size:18px; }
+.photo-stack{ height:560px; }
+.photo-gallery-section{ min-height:590px;padding: 45px 5px 70px; }
+.gallery-title{ font-size:20px; }
+.photo-table{ height:590px; }
+.photo-card{ width:145px;padding:6px; }
+.photo-card img{ height:185px; }
+.card-1{ --x:-88px;--y:-145px; }
+.card-2{ --x:86px;--y:-140px; }
+.card-3{ --x:0px;--y:-25px; }
+.card-4{ --x:-92px;--y:75px; }
+.card-5{ --x:90px;--y:78px; }
+.card-6{ --x:0px;--y:175px; }
+.photo-lightbox{ padding:12px; }
+.lightbox-image-wrap{ width:94vw;height:82vh; }
 .lightbox-prev,
-  .lightbox-next{
-width:42px;height:42px;font-size:32px;
-}
-
-.lightbox-prev{
-left:8px;
-}
-
-.lightbox-next{
-right:8px;
-}
-
-.lightbox-close{
-top:12px;right:12px;
-}
+  .lightbox-next{ width:42px;height:42px;font-size:32px; }
+.lightbox-prev{ left:8px; }
+.lightbox-next{ right:8px; }
+.lightbox-close{ top:12px;right:12px; }
 }
 
 @media (max-width:400px){
-.event-chandelier{
-left:-75px;top:170px;width:145px;
-}
-
-.event-time{
-font-size:57px;
-}
-
-.event-title{
-font-size:19px;
-}
-
-.event-place{
-font-size:18px;
-}
-
-.event-address{
-font-size:16px;
-}
-
-.location-map{
-margin-top:34px;width:100%;
-}
-
-.countdown-grid{
-gap:8px;
-}
-
-.countdown-item{
-min-width:58px;
-}
-
-.countdown-number{
-font-size:32px;
-}
-
-.countdown-label{
-font-size:11px;
-}
-
-.countdown-title{
-font-size:29px;
-}
-
-.location-title{
-font-size:44px;
-}
-
-.real-map{
-height:370px;
-}
-
-.location-button{
-top:78%;width:180px;height:46px;font-size:15px;
-}
-
-.location-chandelier{
-right:-60px;top:200px;width:135px;
-}
-
-.gift-title{
-font-size:37px;
-}
-
-.gift-text{
-font-size:16px;
-}
-
-.card-owner{
-font-size:26px;
-}
-
-.card-number{
-font-size:21px;letter-spacing:1.5px;
-}
-
-.copy-button{
-font-size:17px;
-}
-
-.photo-stack{
-height:520px;
+.event-chandelier{ left:-75px;top:170px;width:145px; }
+.event-time{ font-size:57px; }
+.event-title{ font-size:19px; }
+.event-place{ font-size:18px; }
+.event-address{ font-size:16px; }
+.location-map{ margin-top:34px;width:100%; }
+.countdown-grid{ gap:8px; }
+.countdown-item{ min-width:58px; }
+.countdown-number{ font-size:32px; }
+.countdown-label{ font-size:11px; }
+.countdown-title{ font-size:29px; }
+.location-title{ font-size:44px; }
+.real-map{ height:370px; }
+.location-button{ top:78%;width:180px;height:46px;font-size:15px; }
+.location-chandelier{ right:-60px;top:200px;width:135px; }
+.gift-title{ font-size:37px; }
+.gift-text{ font-size:16px; }
+.card-owner{ font-size:26px; }
+.card-number{ font-size:21px;letter-spacing:1.5px; }
+.copy-button{ font-size:17px; }
+.photo-stack{ height:520px; }
+.photo-gallery-section{ min-height:540px; }
+.photo-table{ height:590px; }
+.photo-card{ width:132px; }
+.photo-card img{ height:170px; }
 }
 
 .photo-gallery-section{
-min-height:540px;
+position:relative;width:100%;max-width:100%;min-height:650px;padding:
+    55px
+    10px
+    90px;overflow:hidden;text-align:center;background:transparent;
 }
 
-.photo-table{
-height:590px;
+.event-chandelier{
+position:absolute !important;left:0 !important;top:375px !important;width:145px !important;height:auto !important;z-index:20 !important;display:block !important;visibility:visible !important;opacity:1 !important;pointer-events:none !important;
 }
 
-.photo-card{
-width:132px;
-}
-
-.photo-card img{
-height:170px;
-}
-}
-
-.photo-table{
-position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;perspective:1200px;height: 620px;
-}
-
-  .photo-table{
-  position:relative;
-
-  width:100%;
-  max-width:520px;
-
-  height:620px;
-
-  margin:0 auto;
-
-  overflow:hidden;
-
-  perspective:1200px;
-}
-
-  .photo-card{
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:180px;
-
-  padding:8px;
-
-  border:0;
-  border-radius:3px;
-
-  background:#fffdf8;
-
-  box-shadow:
-    0 12px 28px rgba(65,45,20,.18);
-
-  cursor:pointer;
-
-  opacity:0;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.45)
-    rotate(0deg);
-
-  animation:none;
-
-  appearance:none;
-  -webkit-appearance:none;
-}
-
-.photo-card img{
-  display:block;
-
-  width:100%;
-  height:225px;
-
-  object-fit:cover;
-
-  pointer-events:none;
-}
-
-.photo-table.is-visible .photo-card{
-  animation:
-    photoScatter
-    .95s
-    cubic-bezier(.18,.89,.32,1.25)
-    forwards;
-}
-
-@keyframes photoScatter{
-
-  0%{
-    opacity:0;
-
-    transform:
-      translate(-50%,-50%)
-      scale(.45)
-      rotate(0deg);
-  }
-
-  100%{
-    opacity:1;
-
-    transform:
-      translate(
-        calc(-50% + var(--x)),
-        calc(-50% + var(--y))
-      )
-      scale(1)
-      rotate(var(--r));
-  }
-}
-  /* ИМЕНА */
-.names{
-  animation:none;
-}
-
-
-/* ФОТО */
 .photo-final{
-  opacity:0;
-  transform:translateY(10px) scale(.98);
-
-  animation:
-    fastPhotoIn
-    .55s
-    ease-out
-    .35s
-    forwards;
+opacity:0;transform:translateY(10px) scale(.98);animation: heroFadeIn .45s ease-out 2.01s forwards;
 }
 
-@keyframes fastPhotoIn{
-  from{
-    opacity:0;
-    transform:translateY(10px) scale(.98);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
-
-
-/* ПРИГЛАСИТЕЛЬНЫЙ ТЕКСТ */
 .wedding-info{
-  opacity:0;
-  transform:translateY(10px);
-
-  animation:
-    fastInfoIn
-    .55s
-    ease-out
-    .65s
-    forwards;
+opacity:0;transform:translateY(10px);animation: heroFadeIn .45s ease-out 2.14s forwards;
 }
 
-@keyframes fastInfoIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+.site-behind > .names{
+opacity:0;animation: heroFadeIn .45s ease-out 1.88s forwards;
 }
-
-  .event-chandelier{
-  position:absolute !important;
-  left:0 !important;
-  top:375px !important;
-  width:145px !important;
-  height:auto !important;
-  z-index:20 !important;
-  display:block !important;
-  visibility:visible !important;
-  opacity:1 !important;
-  pointer-events:none !important;
-}
-
-  @media (max-width: 600px){
-    .event-block{
-      padding: 10px 10px 30px;
-      min-height: 0px;
-    }
-}
-
-  @media (max-width: 600px) {
-    .gallery-title {
-        font-size: 20px;
-    }
-}
-
-  .site-behind{
-  opacity:1 !important;
-  transform:none !important;
-  filter:none !important;
-  animation:none !important;
-}
-
-  /* =========================================================
-   CLEAN CLOUD INTRO
-   Только фон + облака + SM
-========================================================= */
-
-/* Основа */
-.scene{
-  position:relative !important;
-  background:#f4ead6 !important;
-}
-
-/* Сам слой заставки — полностью прозрачный */
-.cloud-overlay{
-  position:fixed !important;
-
-  inset:0 !important;
-
-  width:100vw !important;
-  height:100vh !important;
-
-  margin:0 !important;
-  padding:0 !important;
-
-  background:transparent !important;
-
-  overflow:hidden !important;
-
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-
-  z-index:9999 !important;
-
-  pointer-events:none !important;
-}
-
-/* Только настоящие облака */
-.cloud{
-  position:absolute !important;
-
-  border-radius:50% !important;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #ffffff 0%,
-      #f6e8cf 45%,
-      #e8c98f 75%,
-      rgba(232,201,143,0) 100%
-    ) !important;
-
-  filter:blur(18px) !important;
-
-  opacity:.95 !important;
-
-  display:block !important;
-}
-
-/* SM */
-.logo-wrap{
-  position:relative !important;
-
-  z-index:10000 !important;
-
-  background:transparent !important;
-
-  box-shadow:none !important;
-
-  border:0 !important;
-
-  opacity:0;
-  transform:scale(.75);
-
-  animation:
-    logoIn .7s ease-out 1.2s forwards,
-    logoOut .35s ease-in 2.45s forwards;
-
-  text-align:center;
-}
-  
 </style>
 </head>
 <body>
 
 <div class="scene">
 
-  <!-- site revealed behind the clouds -->
   <div class="site-behind">
 
     <div class="corner-swirl tl">
@@ -1878,7 +741,6 @@ position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;persp
 </div>
 <audio
   id="weddingMusic"
-  autoplay
   loop
   playsinline
   preload="auto"
@@ -1957,7 +819,7 @@ position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;persp
 
   <img
     class="event-palace"
-    src="ChatGPT Image 15 авг. 2026 г., 17_19_31.png"
+    src="ChatGPT Image 15 avg 2026.png"
     alt=""
   >
 
@@ -1991,7 +853,6 @@ position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;persp
     Lokatsiya
   </div>
 
-  <!-- Реальная Яндекс.Карта -->
   <div class="real-map">
 
     <iframe
@@ -2000,7 +861,6 @@ position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;persp
       allowfullscreen="true"
       title="Yakkasaroy to‘yxonasi"
     ></iframe>
-    <!-- Кнопка поверх карты -->
   </div>
  </section>
 
@@ -2012,192 +872,51 @@ position:relative;width:100%;max-width:520px;margin:0 auto;overflow:hidden;persp
 
   <div class="photo-table">
 
-    <button
-      class="photo-card card-1"
-      data-index="0"
-      type="button"
-    >
-      <img
-        src="https://sayt-yaratish.github.io/taklifnoma/1.jpg"
-        alt="Sadriddin va Mushtariy"
-      >
+    <button class="photo-card card-1" data-index="0" type="button">
+      <img src="https://sayt-yaratish.github.io/taklifnoma/1.jpg" alt="Sadriddin va Mushtariy">
     </button>
 
-    <button
-      class="photo-card card-2"
-      data-index="1"
-      type="button"
-    >
-      <img
-        src="https://sayt-yaratish.github.io/taklifnoma/2.jpg"
-        alt="Sadriddin va Mushtariy"
-      >
+    <button class="photo-card card-2" data-index="1" type="button">
+      <img src="https://sayt-yaratish.github.io/taklifnoma/2.jpg" alt="Sadriddin va Mushtariy">
     </button>
 
-    <button
-      class="photo-card card-3"
-      data-index="2"
-      type="button"
-    >
-      <img
-        src="https://sayt-yaratish.github.io/taklifnoma/3.jpg"
-        alt="Sadriddin va Mushtariy"
-      >
+    <button class="photo-card card-3" data-index="2" type="button">
+      <img src="https://sayt-yaratish.github.io/taklifnoma/3.jpg" alt="Sadriddin va Mushtariy">
     </button>
 
-    <button
-      class="photo-card card-4"
-      data-index="3"
-      type="button"
-    >
-      <img
-        src="https://sayt-yaratish.github.io/taklifnoma/4.jpg"
-        alt="Sadriddin va Mushtariy"
-      >
+    <button class="photo-card card-4" data-index="3" type="button">
+      <img src="https://sayt-yaratish.github.io/taklifnoma/4.jpg" alt="Sadriddin va Mushtariy">
     </button>
 
-    <button
-      class="photo-card card-5"
-      data-index="4"
-      type="button"
-    >
-      <img
-        src="https://sayt-yaratish.github.io/taklifnoma/5.jpg"
-        alt="Sadriddin va Mushtariy"
-      >
+    <button class="photo-card card-5" data-index="4" type="button">
+      <img src="https://sayt-yaratish.github.io/taklifnoma/5.jpg" alt="Sadriddin va Mushtariy">
     </button>
 
-    <button
-      class="photo-card card-6"
-      data-index="5"
-      type="button"
-    >
-      <img
-        src="https://sayt-yaratish.github.io/taklifnoma/6.jpg"
-        alt="Sadriddin va Mushtariy"
-      >
+    <button class="photo-card card-6" data-index="5" type="button">
+      <img src="https://sayt-yaratish.github.io/taklifnoma/6.jpg" alt="Sadriddin va Mushtariy">
     </button>
 
   </div>
 
 </section>
 
+<div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
 
-<!-- =========================================
-     FULLSCREEN PHOTO VIEWER
-========================================= -->
-
-<div
-  class="photo-lightbox"
-  id="photoLightbox"
-  aria-hidden="true"
->
-
-  <button
-    class="lightbox-close"
-    id="lightboxClose"
-    type="button"
-    aria-label="Закрыть"
-  >
-    ×
-  </button>
-
-  <button
-    class="lightbox-prev"
-    id="lightboxPrev"
-    type="button"
-    aria-label="Предыдущая"
-  >
-    ‹
-  </button>
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Закрыть">×</button>
+  <button class="lightbox-prev" id="lightboxPrev" type="button" aria-label="Предыдущая">‹</button>
 
   <div class="lightbox-image-wrap">
-
-    <img
-      id="lightboxImage"
-      class="lightbox-image"
-      src=""
-      alt=""
-    >
-
+    <img id="lightboxImage" class="lightbox-image" src="" alt="">
   </div>
 
-  <button
-    class="lightbox-next"
-    id="lightboxNext"
-    type="button"
-    aria-label="Следующая"
-  >
-    ›
-  </button>
+  <button class="lightbox-next" id="lightboxNext" type="button" aria-label="Следующая">›</button>
 
-  <div class="lightbox-counter" id="lightboxCounter">
-    1 / 6
-  </div>
+  <div class="lightbox-counter" id="lightboxCounter">1 / 6</div>
 
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-
-  const copyButton =
-    document.getElementById('copyCardButton');
-
-  const copyToast =
-    document.getElementById('copyToast');
-
-  const cardNumber =
-    '5614 6822 0431 0058';
-
-  copyButton.addEventListener('click', async function(){
-
-    try {
-
-      await navigator.clipboard.writeText(cardNumber);
-
-      copyToast.classList.add('show');
-
-      copyButton.classList.add('copied');
-
-      setTimeout(function(){
-
-        copyToast.classList.remove('show');
-        copyButton.classList.remove('copied');
-
-      }, 1500);
-
-    } catch(error){
-
-      const tempInput =
-        document.createElement('input');
-
-      tempInput.value = cardNumber;
-
-      document.body.appendChild(tempInput);
-
-      tempInput.select();
-
-      document.execCommand('copy');
-
-      tempInput.remove();
-
-      copyToast.classList.add('show');
-
-      setTimeout(function(){
-        copyToast.classList.remove('show');
-      },1500);
-
-    }
-
-  });
-
-});
-</script>
-
-
   </div>
-  </div>
-  <!-- animated cloud cover with AZ letters -->
+
   <div class="cloud-overlay">
     <div class="cloud c1"></div>
     <div class="cloud c2"></div>
@@ -2216,62 +935,39 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 <script>
+/* ===================== COUNTDOWN ===================== */
 const weddingDate = new Date('2026-09-15T15:00:00+05:00').getTime();
 
 function updateCountdown(){
-
   const now = new Date().getTime();
   const difference = weddingDate - now;
 
   if(difference <= 0){
-
-    document.getElementById('days').textContent = '00';
-    document.getElementById('hours').textContent = '00';
-    document.getElementById('minutes').textContent = '00';
-    document.getElementById('seconds').textContent = '00';
-
+    ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '00');
     return;
   }
 
-  const days = Math.floor(
-    difference / (1000 * 60 * 60 * 24)
-  );
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((difference / (1000 * 60)) % 60);
+  const seconds = Math.floor((difference / 1000) % 60);
 
-  const hours = Math.floor(
-    (difference / (1000 * 60 * 60)) % 24
-  );
-
-  const minutes = Math.floor(
-    (difference / (1000 * 60)) % 60
-  );
-
-  const seconds = Math.floor(
-    (difference / 1000) % 60
-  );
-
-  document.getElementById('days').textContent =
-    String(days).padStart(2,'0');
-
-  document.getElementById('hours').textContent =
-    String(hours).padStart(2,'0');
-
-  document.getElementById('minutes').textContent =
-    String(minutes).padStart(2,'0');
-
-  document.getElementById('seconds').textContent =
-    String(seconds).padStart(2,'0');
+  document.getElementById('days').textContent = String(days).padStart(2,'0');
+  document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
 }
 
 updateCountdown();
-
 setInterval(updateCountdown,1000);
 </script>
 
 <script>
+/* ===================== MUSIC ===================== */
 (function () {
 
   const music = document.getElementById('weddingMusic');
-
+  const soundButton = document.getElementById('soundButton');
   if (!music) return;
 
   music.volume = 1;
@@ -2280,807 +976,56 @@ setInterval(updateCountdown,1000);
   function startMusic() {
     if (started) return;
     const promise = music.play();
-
     if (promise !== undefined) {
       promise.then(function () {
         started = true;
-      }).catch(function (error) {
-        console.log('Autoplay blocked by browser:', error);
+      }).catch(function () {
+        /* autoplay blocked, will retry on first user interaction */
       });
     }
   }
 
-  // Пытаемся сразу — сработает в части браузеров
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startMusic);
-  } else {
-    startMusic();
-  }
+  // Try right away (works in some browsers/contexts)
+  startMusic();
   window.addEventListener('load', startMusic);
 
-  // Фолбэк: если браузер заблокировал автоплей (чаще всего iPhone/Safari),
-  // музыка запустится сама при первом же касании/клике/скролле,
-  // без отдельной кнопки, незаметно для пользователя
+  // Fallback: start on the very first touch / click / scroll / keydown
+  // anywhere on the page — this is what makes it reliably work on iPhone/Safari
   const fallbackEvents = ['touchstart', 'click', 'scroll', 'keydown'];
-  fallbackEvents.forEach(function (evt) {
-    document.addEventListener(evt, function onceHandler() {
-      startMusic();
-      fallbackEvents.forEach(function (e) {
-        document.removeEventListener(e, onceHandler);
-      });
-    }, { once: true, passive: true });
-  });
+  function onceHandler() {
+    startMusic();
+    fallbackEvents.forEach(e => document.removeEventListener(e, onceHandler));
+  }
+  fallbackEvents.forEach(e => document.addEventListener(e, onceHandler, { once: true, passive: true }));
+
+  // Mute/unmute toggle button
+  if (soundButton) {
+    soundButton.addEventListener('click', function (event) {
+      event.stopPropagation();
+      if (music.muted || music.paused) {
+        music.muted = false;
+        startMusic();
+      } else {
+        music.muted = true;
+      }
+    });
+  }
 
 })();
 </script>
+
 <script>
-const music = document.getElementById('weddingMusic');
-const soundButton = document.getElementById('soundButton');
-
-if (music) {
-  music.volume = 1;
-
-  window.addEventListener('load', () => {
-    music.play().catch(() => {});
-  });
-}
-
-/* КНОПКА ЗВУКА */
-if (soundButton && music) {
-
-  soundButton.addEventListener('click', function (event) {
-
-    event.stopPropagation();
-
-    if (music.muted || music.paused) {
-
-      music.muted = false;
-
-      music.play().catch(() => {});
-
-    } else {
-
-      music.muted = true;
-
-    }
-
-  });
-
-}
-</script>
-  <script>
-
+/* ===================== GALLERY + LIGHTBOX ===================== */
 document.addEventListener('DOMContentLoaded', function(){
 
-  /* =======================================================
-     ELEMENTS
-  ======================================================= */
-
-  const photoTable =
-    document.querySelector('.photo-table');
-
-  const cards =
-    document.querySelectorAll('.photo-card');
-
-  const lightbox =
-    document.getElementById('photoLightbox');
-
-  const lightboxImage =
-    document.getElementById('lightboxImage');
-
-  const lightboxClose =
-    document.getElementById('lightboxClose');
-
-  const lightboxPrev =
-    document.getElementById('lightboxPrev');
-
-  const lightboxNext =
-    document.getElementById('lightboxNext');
-
-  const lightboxCounter =
-    document.getElementById('lightboxCounter');
-
-
-  /* =======================================================
-     IMAGE ARRAY
-  ======================================================= */
-
-  const photos = [
-    'https://sayt-yaratish.github.io/taklifnoma/1.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/2.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/3.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/4.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/5.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/6.jpg'
-  ];
-
-
-  let currentIndex = 0;
-
-
-  /* =======================================================
-     APPEAR ON SCROLL
-  ======================================================= */
-
-  const galleryObserver =
-    new IntersectionObserver(
-      function(entries){
-
-        entries.forEach(function(entry){
-
-          if(
-            entry.isIntersecting
-          ){
-
-            photoTable.classList.add('is-visible');
-
-            galleryObserver.unobserve(
-              photoTable
-            );
-
-          }
-
-        });
-
-      },
-      {
-        threshold:.25
-      }
-    );
-
-  galleryObserver.observe(photoTable);
-
-
-  /* =======================================================
-     OPEN LIGHTBOX
-  ======================================================= */
-
-  function openLightbox(index){
-
-    currentIndex = index;
-
-    updateLightbox();
-
-    lightbox.classList.add('active');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'false'
-    );
-
-    document.body.style.overflow = 'hidden';
-
-  }
-
-
-  /* =======================================================
-     UPDATE IMAGE
-  ======================================================= */
-
-  function updateLightbox(){
-
-    lightboxImage.src =
-      photos[currentIndex];
-
-    lightboxCounter.textContent =
-      (currentIndex + 1) +
-      ' / ' +
-      photos.length;
-
-  }
-
-
-  /* =======================================================
-     CLOSE
-  ======================================================= */
-
-  function closeLightbox(){
-
-    lightbox.classList.remove('active');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'true'
-    );
-
-    document.body.style.overflow = '';
-
-  }
-
-
-  /* =======================================================
-     NEXT
-  ======================================================= */
-
-  function nextPhoto(){
-
-    currentIndex =
-      (currentIndex + 1) %
-      photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  /* =======================================================
-     PREVIOUS
-  ======================================================= */
-
-  function previousPhoto(){
-
-    currentIndex =
-      (currentIndex - 1 + photos.length) %
-      photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  /* =======================================================
-     CARD CLICK
-  ======================================================= */
-
-  cards.forEach(function(card){
-
-    card.addEventListener(
-      'click',
-      function(){
-
-        const index =
-          Number(
-            card.dataset.index
-          );
-
-        openLightbox(index);
-
-      }
-    );
-
-  });
-
-
-  /* =======================================================
-     BUTTONS
-  ======================================================= */
-
-  lightboxClose.addEventListener(
-    'click',
-    closeLightbox
-  );
-
-  lightboxNext.addEventListener(
-    'click',
-    nextPhoto
-  );
-
-  lightboxPrev.addEventListener(
-    'click',
-    previousPhoto
-  );
-
-
-  /* =======================================================
-     CLICK BACKGROUND TO CLOSE
-  ======================================================= */
-
-  lightbox.addEventListener(
-    'click',
-    function(event){
-
-      if(
-        event.target === lightbox
-      ){
-
-        closeLightbox();
-
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     KEYBOARD
-  ======================================================= */
-
-  document.addEventListener(
-    'keydown',
-    function(event){
-
-      if(
-        !lightbox.classList.contains('active')
-      ){
-
-        return;
-
-      }
-
-      if(event.key === 'Escape'){
-        closeLightbox();
-      }
-
-      if(event.key === 'ArrowRight'){
-        nextPhoto();
-      }
-
-      if(event.key === 'ArrowLeft'){
-        previousPhoto();
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     SWIPE ON MOBILE
-  ======================================================= */
-
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-
-  lightboxImageWrapTouchStart = null;
-
-
-  lightbox.addEventListener(
-    'touchstart',
-    function(event){
-
-      touchStartX =
-        event.changedTouches[0].screenX;
-
-    },
-    {
-      passive:true
-    }
-  );
-
-
-  lightbox.addEventListener(
-    'touchend',
-    function(event){
-
-      touchEndX =
-        event.changedTouches[0].screenX;
-
-      const distance =
-        touchEndX - touchStartX;
-
-
-      if(
-        Math.abs(distance) < 50
-      ){
-
-        return;
-
-      }
-
-
-      if(distance < 0){
-
-        nextPhoto();
-
-      }else{
-
-        previousPhoto();
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
-
-});
-
-</script>
-    <script>
-
-document.addEventListener('DOMContentLoaded', function(){
-
-  /* =======================================================
-     ELEMENTS
-  ======================================================= */
-
-  const photoTable =
-    document.querySelector('.photo-table');
-
-  const cards =
-    document.querySelectorAll('.photo-card');
-
-  const lightbox =
-    document.getElementById('photoLightbox');
-
-  const lightboxImage =
-    document.getElementById('lightboxImage');
-
-  const lightboxClose =
-    document.getElementById('lightboxClose');
-
-  const lightboxPrev =
-    document.getElementById('lightboxPrev');
-
-  const lightboxNext =
-    document.getElementById('lightboxNext');
-
-  const lightboxCounter =
-    document.getElementById('lightboxCounter');
-
-
-  /* =======================================================
-     IMAGE ARRAY
-  ======================================================= */
-
-  const photos = [
-    'https://sayt-yaratish.github.io/taklifnoma/1.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/2.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/3.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/4.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/5.jpg',
-    'https://sayt-yaratish.github.io/taklifnoma/6.jpg'
-  ];
-
-
-  let currentIndex = 0;
-
-
-  /* =======================================================
-     APPEAR ON SCROLL
-  ======================================================= */
-
-  const galleryObserver =
-    new IntersectionObserver(
-      function(entries){
-
-        entries.forEach(function(entry){
-
-          if(
-            entry.isIntersecting
-          ){
-
-            photoTable.classList.add('is-visible');
-
-            galleryObserver.unobserve(
-              photoTable
-            );
-
-          }
-
-        });
-
-      },
-      {
-        threshold:.25
-      }
-    );
-
-  galleryObserver.observe(photoTable);
-
-
-  /* =======================================================
-     OPEN LIGHTBOX
-  ======================================================= */
-
-  function openLightbox(index){
-
-    currentIndex = index;
-
-    updateLightbox();
-
-    lightbox.classList.add('active');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'false'
-    );
-
-    document.body.style.overflow = 'hidden';
-
-  }
-
-
-  /* =======================================================
-     UPDATE IMAGE
-  ======================================================= */
-
-  function updateLightbox(){
-
-    lightboxImage.src =
-      photos[currentIndex];
-
-    lightboxCounter.textContent =
-      (currentIndex + 1) +
-      ' / ' +
-      photos.length;
-
-  }
-
-
-  /* =======================================================
-     CLOSE
-  ======================================================= */
-
-  function closeLightbox(){
-
-    lightbox.classList.remove('active');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'true'
-    );
-
-    document.body.style.overflow = '';
-
-  }
-
-
-  /* =======================================================
-     NEXT
-  ======================================================= */
-
-  function nextPhoto(){
-
-    currentIndex =
-      (currentIndex + 1) %
-      photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  /* =======================================================
-     PREVIOUS
-  ======================================================= */
-
-  function previousPhoto(){
-
-    currentIndex =
-      (currentIndex - 1 + photos.length) %
-      photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  /* =======================================================
-     CARD CLICK
-  ======================================================= */
-
-  cards.forEach(function(card){
-
-    card.addEventListener(
-      'click',
-      function(){
-
-        const index =
-          Number(
-            card.dataset.index
-          );
-
-        openLightbox(index);
-
-      }
-    );
-
-  });
-
-
-  /* =======================================================
-     BUTTONS
-  ======================================================= */
-
-  lightboxClose.addEventListener(
-    'click',
-    closeLightbox
-  );
-
-  lightboxNext.addEventListener(
-    'click',
-    nextPhoto
-  );
-
-  lightboxPrev.addEventListener(
-    'click',
-    previousPhoto
-  );
-
-
-  /* =======================================================
-     CLICK BACKGROUND TO CLOSE
-  ======================================================= */
-
-  lightbox.addEventListener(
-    'click',
-    function(event){
-
-      if(
-        event.target === lightbox
-      ){
-
-        closeLightbox();
-
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     KEYBOARD
-  ======================================================= */
-
-  document.addEventListener(
-    'keydown',
-    function(event){
-
-      if(
-        !lightbox.classList.contains('active')
-      ){
-
-        return;
-
-      }
-
-      if(event.key === 'Escape'){
-        closeLightbox();
-      }
-
-      if(event.key === 'ArrowRight'){
-        nextPhoto();
-      }
-
-      if(event.key === 'ArrowLeft'){
-        previousPhoto();
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     SWIPE ON MOBILE
-  ======================================================= */
-
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-
-  lightboxImageWrapTouchStart = null;
-
-
-  lightbox.addEventListener(
-    'touchstart',
-    function(event){
-
-      touchStartX =
-        event.changedTouches[0].screenX;
-
-    },
-    {
-      passive:true
-    }
-  );
-
-
-  lightbox.addEventListener(
-    'touchend',
-    function(event){
-
-      touchEndX =
-        event.changedTouches[0].screenX;
-
-      const distance =
-        touchEndX - touchStartX;
-
-
-      if(
-        Math.abs(distance) < 50
-      ){
-
-        return;
-
-      }
-
-
-      if(distance < 0){
-
-        nextPhoto();
-
-      }else{
-
-        previousPhoto();
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
-
-});
-
-</script>
-  <script>
-document.addEventListener('DOMContentLoaded', function(){
-
-  const revealItems =
-    document.querySelectorAll('.scroll-reveal');
-
-  const observer =
-    new IntersectionObserver(
-      function(entries){
-
-        entries.forEach(function(entry){
-
-          if(entry.isIntersecting){
-
-            entry.target.classList.add('visible');
-
-            observer.unobserve(entry.target);
-
-          }
-
-        });
-
-      },
-      {
-        threshold:0.18,
-        rootMargin:'0px 0px -60px 0px'
-      }
-    );
-
-  revealItems.forEach(function(item){
-    observer.observe(item);
-  });
-
-});
-</script>
-  <script>
-document.addEventListener('DOMContentLoaded', function () {
-
-  const table = document.querySelector('.photo-table');
-
-  if (!table) return;
-
-  /* Запускаем анимацию, когда коллаж появляется на экране */
-  const observer = new IntersectionObserver(function (entries) {
-
-    entries.forEach(function (entry) {
-
-      if (entry.isIntersecting) {
-
-        table.classList.add('is-visible');
-
-        observer.unobserve(table);
-
-      }
-
-    });
-
-  }, {
-    threshold: 0.15
-  });
-
-  observer.observe(table);
-
-
-  /* ==========================
-     LIGHTBOX
-  ========================== */
-
+  const photoTable = document.querySelector('.photo-table');
   const cards = document.querySelectorAll('.photo-card');
   const lightbox = document.getElementById('photoLightbox');
-  const image = document.getElementById('lightboxImage');
-  const close = document.getElementById('lightboxClose');
-  const prev = document.getElementById('lightboxPrev');
-  const next = document.getElementById('lightboxNext');
-  const counter = document.getElementById('lightboxCounter');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxCounter = document.getElementById('lightboxCounter');
 
   const photos = [
     'https://sayt-yaratish.github.io/taklifnoma/1.jpg',
@@ -3091,82 +1036,84 @@ document.addEventListener('DOMContentLoaded', function () {
     'https://sayt-yaratish.github.io/taklifnoma/6.jpg'
   ];
 
-  let current = 0;
+  let currentIndex = 0;
 
-  function showPhoto(index) {
+  // Trigger the scatter animation once the collage scrolls into view
+  if (photoTable) {
+    const galleryObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          photoTable.classList.add('is-visible');
+          galleryObserver.unobserve(photoTable);
+        }
+      });
+    }, { threshold: 0.2 });
+    galleryObserver.observe(photoTable);
+  }
 
-    current = index;
+  function updateLightbox(){
+    lightboxImage.src = photos[currentIndex];
+    lightboxCounter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+  }
 
-    image.src = photos[current];
-
-    counter.textContent =
-      (current + 1) + ' / ' + photos.length;
-
+  function openLightbox(index){
+    currentIndex = index;
+    updateLightbox();
     lightbox.classList.add('active');
-
+    lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
-  function closePhoto() {
-
+  function closeLightbox(){
     lightbox.classList.remove('active');
-
+    lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  function nextPhoto() {
-
-    current =
-      (current + 1) % photos.length;
-
-    showPhoto(current);
+  function nextPhoto(){
+    currentIndex = (currentIndex + 1) % photos.length;
+    updateLightbox();
   }
 
-  function prevPhoto() {
-
-    current =
-      (current - 1 + photos.length) % photos.length;
-
-    showPhoto(current);
+  function previousPhoto(){
+    currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+    updateLightbox();
   }
 
-  cards.forEach(function (card) {
-
-    card.addEventListener('click', function () {
-
-      showPhoto(
-        Number(card.dataset.index)
-      );
-
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      openLightbox(Number(card.dataset.index));
     });
-
   });
 
-  close.addEventListener(
-    'click',
-    closePhoto
-  );
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxNext.addEventListener('click', nextPhoto);
+  lightboxPrev.addEventListener('click', previousPhoto);
 
-  next.addEventListener(
-    'click',
-    nextPhoto
-  );
+  lightbox.addEventListener('click', function(event){
+    if(event.target === lightbox){ closeLightbox(); }
+  });
 
-  prev.addEventListener(
-    'click',
-    prevPhoto
-  );
+  document.addEventListener('keydown', function(event){
+    if(!lightbox.classList.contains('active')) return;
+    if(event.key === 'Escape') closeLightbox();
+    if(event.key === 'ArrowRight') nextPhoto();
+    if(event.key === 'ArrowLeft') previousPhoto();
+  });
 
-  lightbox.addEventListener(
-    'click',
-    function (e) {
+  let touchStartX = 0;
+  let touchEndX = 0;
 
-      if (e.target === lightbox) {
-        closePhoto();
-      }
+  lightbox.addEventListener('touchstart', function(event){
+    touchStartX = event.changedTouches[0].screenX;
+  }, { passive:true });
 
-    }
-  );
+  lightbox.addEventListener('touchend', function(event){
+    touchEndX = event.changedTouches[0].screenX;
+    const distance = touchEndX - touchStartX;
+    if(Math.abs(distance) < 50) return;
+    if(distance < 0){ nextPhoto(); } else { previousPhoto(); }
+  }, { passive:true });
 
 });
 </script>
