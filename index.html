@@ -3905,6 +3905,551 @@ img{
   box-shadow:
     0 15px 35px rgba(120,90,40,.16);
 }
+
+  /* =========================================================
+   GALLERY SECTION
+========================================================= */
+
+.photo-gallery-section{
+  position:relative;
+
+  width:100%;
+  max-width:100%;
+
+  min-height:650px;
+
+  padding:
+    55px
+    10px
+    90px;
+
+  overflow:hidden;
+
+  text-align:center;
+
+  background:transparent;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.gallery-title{
+  position:relative;
+
+  z-index:5;
+
+  margin-bottom:30px;
+
+  font-family:'Great Vibes',cursive;
+
+  font-size:46px;
+
+  line-height:1;
+
+  color:#a87516;
+}
+
+
+/* =========================================================
+   TABLE / STAGE
+========================================================= */
+
+.photo-table{
+  position:relative;
+
+  width:100%;
+
+  max-width:520px;
+
+  height:520px;
+
+  margin:0 auto;
+
+  overflow:hidden;
+
+  perspective:1200px;
+}
+
+
+/* =========================================================
+   PHOTO CARD
+========================================================= */
+
+.photo-card{
+  position:absolute;
+
+  display:block;
+
+  width:180px;
+
+  padding:8px;
+
+  border:0;
+
+  background:#fffdf8;
+
+  border-radius:3px;
+
+  box-shadow:
+    0 12px 28px rgba(65,45,20,.18);
+
+  cursor:pointer;
+
+  opacity:0;
+
+  transform:
+    translate(-50%,-50%)
+    scale(.55)
+    rotate(0deg);
+
+  transform-origin:center center;
+
+  transition:
+    box-shadow .3s ease;
+
+  appearance:none;
+
+  -webkit-appearance:none;
+
+  touch-action:manipulation;
+}
+
+.photo-card img{
+  display:block;
+
+  width:100%;
+  height:225px;
+
+  object-fit:cover;
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.photo-card:hover{
+  box-shadow:
+    0 18px 40px rgba(65,45,20,.26);
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.photo-table.is-visible .photo-card{
+  animation:
+    photoScatter
+    .95s
+    cubic-bezier(.18,.89,.32,1.25)
+    forwards;
+}
+
+@keyframes photoScatter{
+
+  0%{
+    opacity:0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(.45)
+      rotate(0deg);
+  }
+
+  55%{
+    opacity:1;
+
+    transform:
+      translate(-50%,-50%)
+      scale(1.06)
+      rotate(var(--r));
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+      translate(
+        calc(-50% + var(--x)),
+        calc(-50% + var(--y))
+      )
+      scale(1)
+      rotate(var(--r));
+  }
+
+}
+
+
+/* =========================================================
+   CARD POSITIONS
+========================================================= */
+
+.card-1{
+  left:50%;
+  top:50%;
+
+  --x:-125px;
+  --y:-165px;
+  --r:-11deg;
+
+  animation-delay:.05s;
+}
+
+.card-2{
+  left:50%;
+  top:50%;
+
+  --x:120px;
+  --y:-155px;
+  --r:9deg;
+
+  animation-delay:.35s;
+}
+
+.card-3{
+  left:50%;
+  top:50%;
+
+  --x:0px;
+  --y:-35px;
+  --r:-3deg;
+
+  z-index:6;
+
+  animation-delay:.65s;
+}
+
+.card-4{
+  left:50%;
+  top:50%;
+
+  --x:-135px;
+  --y:85px;
+  --r:7deg;
+
+  animation-delay:.95s;
+}
+
+.card-5{
+  left:50%;
+  top:50%;
+
+  --x:130px;
+  --y:90px;
+  --r:-8deg;
+
+  animation-delay:1.25s;
+}
+
+.card-6{
+  left:50%;
+  top:50%;
+
+  --x:0px;
+  --y:205px;
+  --r:4deg;
+
+  z-index:7;
+
+  animation-delay:1.55s;
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.photo-lightbox{
+  position:fixed;
+
+  inset:0;
+
+  z-index:99999;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:25px;
+
+  background:rgba(25,18,10,.90);
+
+  opacity:0;
+
+  visibility:hidden;
+
+  pointer-events:none;
+
+  transition:
+    opacity .3s ease,
+    visibility .3s ease;
+}
+
+.photo-lightbox.active{
+  opacity:1;
+
+  visibility:visible;
+
+  pointer-events:auto;
+}
+
+
+/* =========================================================
+   BIG IMAGE
+========================================================= */
+
+.lightbox-image-wrap{
+  position:relative;
+
+  width:min(90vw,900px);
+
+  height:min(86vh,900px);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  touch-action:none;
+}
+
+.lightbox-image{
+  display:block;
+
+  max-width:100%;
+  max-height:100%;
+
+  width:auto;
+  height:auto;
+
+  object-fit:contain;
+
+  border-radius:5px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.35);
+
+  user-select:none;
+
+  -webkit-user-drag:none;
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+.lightbox-close{
+  position:absolute;
+
+  top:18px;
+  right:20px;
+
+  width:46px;
+  height:46px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.14);
+
+  color:#fff;
+
+  font-size:36px;
+
+  line-height:1;
+
+  cursor:pointer;
+
+  z-index:5;
+}
+
+
+/* =========================================================
+   PREV / NEXT
+========================================================= */
+
+.lightbox-prev,
+.lightbox-next{
+
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:52px;
+  height:52px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.14);
+
+  color:#fff;
+
+  font-size:42px;
+
+  line-height:1;
+
+  cursor:pointer;
+
+  z-index:5;
+}
+
+.lightbox-prev{
+  left:18px;
+}
+
+.lightbox-next{
+  right:18px;
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.lightbox-counter{
+  position:absolute;
+
+  left:50%;
+  bottom:20px;
+
+  transform:translateX(-50%);
+
+  color:rgba(255,255,255,.85);
+
+  font-family:'Playfair Display',serif;
+
+  font-size:14px;
+
+  letter-spacing:2px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  .photo-gallery-section{
+    min-height:590px;
+
+    padding:
+      45px
+      5px
+      70px;
+  }
+
+  .gallery-title{
+    font-size:42px;
+  }
+
+  .photo-table{
+    height:490px;
+  }
+
+  .photo-card{
+    width:145px;
+
+    padding:6px;
+  }
+
+  .photo-card img{
+    height:185px;
+  }
+
+  .card-1{
+    --x:-88px;
+    --y:-145px;
+  }
+
+  .card-2{
+    --x:86px;
+    --y:-140px;
+  }
+
+  .card-3{
+    --x:0px;
+    --y:-25px;
+  }
+
+  .card-4{
+    --x:-92px;
+    --y:75px;
+  }
+
+  .card-5{
+    --x:90px;
+    --y:78px;
+  }
+
+  .card-6{
+    --x:0px;
+    --y:175px;
+  }
+
+  .photo-lightbox{
+    padding:12px;
+  }
+
+  .lightbox-image-wrap{
+    width:94vw;
+    height:82vh;
+  }
+
+  .lightbox-prev,
+  .lightbox-next{
+    width:42px;
+    height:42px;
+
+    font-size:32px;
+  }
+
+  .lightbox-prev{
+    left:8px;
+  }
+
+  .lightbox-next{
+    right:8px;
+  }
+
+  .lightbox-close{
+    top:12px;
+    right:12px;
+  }
+
+}
+
+@media(max-width:400px){
+
+  .photo-gallery-section{
+    min-height:540px;
+  }
+
+  .photo-table{
+    height:450px;
+  }
+
+  .photo-card{
+    width:132px;
+  }
+
+  .photo-card img{
+    height:170px;
+  }
+
+}
   
 </style>
 </head>
@@ -4042,7 +4587,7 @@ img{
 </div>
 <section class="location-block">
   <div class="location-title">
-    Yo‘l xaritasi
+    Lokatsiya
   </div>
 
   <!-- Реальная Яндекс.Карта -->
@@ -4064,33 +4609,138 @@ img{
   >
 </section>
 
-    <section class="photo-stack">
+    <section class="photo-gallery-section">
 
-  <div class="photo-card card-1">
-    <img src="https://sayt-yaratish.github.io/taklifnoma/1.jpg" alt="">
+  <div class="gallery-title">
+    Bizning lahzalar
   </div>
 
-  <div class="photo-card card-2">
-    <img src="https://sayt-yaratish.github.io/taklifnoma/2.jpg" alt="">
-  </div>
+  <div class="photo-table">
 
-  <div class="photo-card card-3">
-    <img src="https://sayt-yaratish.github.io/taklifnoma/3.jpg" alt="">
-  </div>
+    <button
+      class="photo-card card-1"
+      data-index="0"
+      type="button"
+    >
+      <img
+        src="https://sayt-yaratish.github.io/taklifnoma/1.jpg"
+        alt="Sadriddin va Mushtariy"
+      >
+    </button>
 
-  <div class="photo-card card-4">
-    <img src="https://sayt-yaratish.github.io/taklifnoma/4.jpg" alt="">
-  </div>
+    <button
+      class="photo-card card-2"
+      data-index="1"
+      type="button"
+    >
+      <img
+        src="https://sayt-yaratish.github.io/taklifnoma/2.jpg"
+        alt="Sadriddin va Mushtariy"
+      >
+    </button>
 
-  <div class="photo-card card-5">
-    <img src="https://sayt-yaratish.github.io/taklifnoma/5.jpg" alt="">
-  </div>
+    <button
+      class="photo-card card-3"
+      data-index="2"
+      type="button"
+    >
+      <img
+        src="https://sayt-yaratish.github.io/taklifnoma/3.jpg"
+        alt="Sadriddin va Mushtariy"
+      >
+    </button>
 
-  <div class="photo-card card-6">
-    <img src="https://sayt-yaratish.github.io/taklifnoma/6.jpg" alt="">
+    <button
+      class="photo-card card-4"
+      data-index="3"
+      type="button"
+    >
+      <img
+        src="https://sayt-yaratish.github.io/taklifnoma/4.jpg"
+        alt="Sadriddin va Mushtariy"
+      >
+    </button>
+
+    <button
+      class="photo-card card-5"
+      data-index="4"
+      type="button"
+    >
+      <img
+        src="https://sayt-yaratish.github.io/taklifnoma/5.jpg"
+        alt="Sadriddin va Mushtariy"
+      >
+    </button>
+
+    <button
+      class="photo-card card-6"
+      data-index="5"
+      type="button"
+    >
+      <img
+        src="https://sayt-yaratish.github.io/taklifnoma/6.jpg"
+        alt="Sadriddin va Mushtariy"
+      >
+    </button>
+
   </div>
 
 </section>
+
+
+<!-- =========================================
+     FULLSCREEN PHOTO VIEWER
+========================================= -->
+
+<div
+  class="photo-lightbox"
+  id="photoLightbox"
+  aria-hidden="true"
+>
+
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    type="button"
+    aria-label="Закрыть"
+  >
+    ×
+  </button>
+
+  <button
+    class="lightbox-prev"
+    id="lightboxPrev"
+    type="button"
+    aria-label="Предыдущая"
+  >
+    ‹
+  </button>
+
+  <div class="lightbox-image-wrap">
+
+    <img
+      id="lightboxImage"
+      class="lightbox-image"
+      src=""
+      alt=""
+    >
+
+  </div>
+
+  <button
+    class="lightbox-next"
+    id="lightboxNext"
+    type="button"
+    aria-label="Следующая"
+  >
+    ›
+  </button>
+
+  <div class="lightbox-counter" id="lightboxCounter">
+    1 / 6
+  </div>
+
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function(){
@@ -4302,6 +4952,335 @@ if (soundButton && music) {
   });
 
 }
+</script>
+  <script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  /* =======================================================
+     ELEMENTS
+  ======================================================= */
+
+  const photoTable =
+    document.querySelector('.photo-table');
+
+  const cards =
+    document.querySelectorAll('.photo-card');
+
+  const lightbox =
+    document.getElementById('photoLightbox');
+
+  const lightboxImage =
+    document.getElementById('lightboxImage');
+
+  const lightboxClose =
+    document.getElementById('lightboxClose');
+
+  const lightboxPrev =
+    document.getElementById('lightboxPrev');
+
+  const lightboxNext =
+    document.getElementById('lightboxNext');
+
+  const lightboxCounter =
+    document.getElementById('lightboxCounter');
+
+
+  /* =======================================================
+     IMAGE ARRAY
+  ======================================================= */
+
+  const photos = [
+    'https://sayt-yaratish.github.io/taklifnoma/1.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/2.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/3.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/4.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/5.jpg',
+    'https://sayt-yaratish.github.io/taklifnoma/6.jpg'
+  ];
+
+
+  let currentIndex = 0;
+
+
+  /* =======================================================
+     APPEAR ON SCROLL
+  ======================================================= */
+
+  const galleryObserver =
+    new IntersectionObserver(
+      function(entries){
+
+        entries.forEach(function(entry){
+
+          if(
+            entry.isIntersecting
+          ){
+
+            photoTable.classList.add('is-visible');
+
+            galleryObserver.unobserve(
+              photoTable
+            );
+
+          }
+
+        });
+
+      },
+      {
+        threshold:.25
+      }
+    );
+
+  galleryObserver.observe(photoTable);
+
+
+  /* =======================================================
+     OPEN LIGHTBOX
+  ======================================================= */
+
+  function openLightbox(index){
+
+    currentIndex = index;
+
+    updateLightbox();
+
+    lightbox.classList.add('active');
+
+    lightbox.setAttribute(
+      'aria-hidden',
+      'false'
+    );
+
+    document.body.style.overflow = 'hidden';
+
+  }
+
+
+  /* =======================================================
+     UPDATE IMAGE
+  ======================================================= */
+
+  function updateLightbox(){
+
+    lightboxImage.src =
+      photos[currentIndex];
+
+    lightboxCounter.textContent =
+      (currentIndex + 1) +
+      ' / ' +
+      photos.length;
+
+  }
+
+
+  /* =======================================================
+     CLOSE
+  ======================================================= */
+
+  function closeLightbox(){
+
+    lightbox.classList.remove('active');
+
+    lightbox.setAttribute(
+      'aria-hidden',
+      'true'
+    );
+
+    document.body.style.overflow = '';
+
+  }
+
+
+  /* =======================================================
+     NEXT
+  ======================================================= */
+
+  function nextPhoto(){
+
+    currentIndex =
+      (currentIndex + 1) %
+      photos.length;
+
+    updateLightbox();
+
+  }
+
+
+  /* =======================================================
+     PREVIOUS
+  ======================================================= */
+
+  function previousPhoto(){
+
+    currentIndex =
+      (currentIndex - 1 + photos.length) %
+      photos.length;
+
+    updateLightbox();
+
+  }
+
+
+  /* =======================================================
+     CARD CLICK
+  ======================================================= */
+
+  cards.forEach(function(card){
+
+    card.addEventListener(
+      'click',
+      function(){
+
+        const index =
+          Number(
+            card.dataset.index
+          );
+
+        openLightbox(index);
+
+      }
+    );
+
+  });
+
+
+  /* =======================================================
+     BUTTONS
+  ======================================================= */
+
+  lightboxClose.addEventListener(
+    'click',
+    closeLightbox
+  );
+
+  lightboxNext.addEventListener(
+    'click',
+    nextPhoto
+  );
+
+  lightboxPrev.addEventListener(
+    'click',
+    previousPhoto
+  );
+
+
+  /* =======================================================
+     CLICK BACKGROUND TO CLOSE
+  ======================================================= */
+
+  lightbox.addEventListener(
+    'click',
+    function(event){
+
+      if(
+        event.target === lightbox
+      ){
+
+        closeLightbox();
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     KEYBOARD
+  ======================================================= */
+
+  document.addEventListener(
+    'keydown',
+    function(event){
+
+      if(
+        !lightbox.classList.contains('active')
+      ){
+
+        return;
+
+      }
+
+      if(event.key === 'Escape'){
+        closeLightbox();
+      }
+
+      if(event.key === 'ArrowRight'){
+        nextPhoto();
+      }
+
+      if(event.key === 'ArrowLeft'){
+        previousPhoto();
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     SWIPE ON MOBILE
+  ======================================================= */
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+
+  lightboxImageWrapTouchStart = null;
+
+
+  lightbox.addEventListener(
+    'touchstart',
+    function(event){
+
+      touchStartX =
+        event.changedTouches[0].screenX;
+
+    },
+    {
+      passive:true
+    }
+  );
+
+
+  lightbox.addEventListener(
+    'touchend',
+    function(event){
+
+      touchEndX =
+        event.changedTouches[0].screenX;
+
+      const distance =
+        touchEndX - touchStartX;
+
+
+      if(
+        Math.abs(distance) < 50
+      ){
+
+        return;
+
+      }
+
+
+      if(distance < 0){
+
+        nextPhoto();
+
+      }else{
+
+        previousPhoto();
+
+      }
+
+    },
+    {
+      passive:true
+    }
+  );
+
+});
+
 </script>
 </body>
 </html>
