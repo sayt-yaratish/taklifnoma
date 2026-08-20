@@ -738,6 +738,142 @@ width:19px;height:19px;fill:var(--gold);
 @media (max-width:400px){
 .plane-hint{ font-size:12px;padding:7px 11px; }
 }
+
+  .plane-wrap{
+  position:fixed !important;
+
+  right:20px !important;
+  bottom:20px !important;
+
+  z-index:99999 !important;
+
+  display:flex !important;
+  flex-direction:row !important;
+
+  align-items:center !important;
+  justify-content:flex-end !important;
+
+  gap:10px !important;
+
+  width:auto !important;
+  height:auto !important;
+}
+
+
+/* Текст */
+.plane-hint{
+  position:relative !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  gap:7px !important;
+
+  width:auto !important;
+  height:auto !important;
+
+  margin:0 !important;
+
+  padding:8px 13px !important;
+
+  border:1px solid #c9a65e !important;
+  border-radius:18px !important;
+
+  background:#fffdf9 !important;
+
+  color:#4a3c2a !important;
+
+  font-family:"Playfair Display",serif !important;
+  font-size:13px !important;
+  line-height:1 !important;
+
+  white-space:nowrap !important;
+
+  box-shadow:
+    0 3px 10px rgba(150,110,40,.15) !important;
+
+  pointer-events:none !important;
+}
+
+.plane-hint-arrow{
+  display:inline-block !important;
+
+  color:var(--gold) !important;
+
+  font-size:17px !important;
+  line-height:1 !important;
+
+  transform:none !important;
+}
+
+
+/* КРУГЛАЯ TELEGRAM-КНОПКА */
+.plane-wrap .plane-btn{
+  position:relative !important;
+
+  right:auto !important;
+  left:auto !important;
+  top:auto !important;
+  bottom:auto !important;
+
+  display:flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  flex:0 0 44px !important;
+
+  width:44px !important;
+  height:44px !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  border:0 !important;
+  border-radius:50% !important;
+
+  background:#fff !important;
+
+  box-shadow:
+    0 4px 14px rgba(150,110,40,.25) !important;
+
+  text-decoration:none !important;
+
+  cursor:pointer !important;
+}
+
+.plane-wrap .plane-btn svg{
+  width:19px !important;
+  height:19px !important;
+
+  fill:var(--gold) !important;
+}
+
+
+/* МОБИЛКА */
+@media(max-width:400px){
+
+  .plane-wrap{
+    right:14px !important;
+    bottom:14px !important;
+
+    gap:7px !important;
+  }
+
+  .plane-hint{
+    font-size:12px !important;
+    padding:7px 11px !important;
+  }
+
+  .plane-wrap .plane-btn{
+    flex-basis:42px !important;
+
+    width:42px !important;
+    height:42px !important;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -776,7 +912,7 @@ width:19px;height:19px;fill:var(--gold);
 
   <span class="plane-hint">
     Tilak qoldirish
-    <span class="plane-hint-arrow">&#8594;</span>
+    <span class="plane-hint-arrow">→</span>
   </span>
 
   <a
@@ -786,7 +922,10 @@ width:19px;height:19px;fill:var(--gold);
     rel="noopener"
     aria-label="Telegram"
   >
-   </a>
+    <svg viewBox="0 0 24 24">
+      <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+    </svg>
+  </a>
 
 </div>
 </a>
